@@ -30,6 +30,11 @@ public class GoodInfo {
      */
     private BigDecimal price;
 
+    /**
+     * Путь к картинку
+     */
+    private String picturePath;
+
     public GoodInfo() {
     }
 

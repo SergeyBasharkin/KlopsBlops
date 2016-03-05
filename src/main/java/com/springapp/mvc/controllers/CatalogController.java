@@ -24,6 +24,8 @@ import java.util.List;
 @RequestMapping("/catalog")
 public class CatalogController {
 
+    private static final Integer TEST_GOODS_COUNT = 16;
+    private static final Integer TEST_LIMIT = 6;
     @Autowired
     private CatalogService catalogService;
 
@@ -37,26 +39,31 @@ public class CatalogController {
      */
 
 
-    @Autowired
-    private HttpServletRequest request;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderCatalog(@PathVariable("id") Long id,
-                                @RequestParam(value = "page", required = false, defaultValue = "1") String page,
+                                @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                                 Long limit,
                                 Model model) {
         List<GoodInfo> goods = catalogService.getGoodsByCategoryId(id);
-
-
-        List<Integer> ids=catalogService.ids(request);
-
-
         model.addAttribute("goods", goods);
+
+
+
         model.addAttribute("page", page);
-        model.addAttribute("limit", limit);
+        model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
+        model.addAttribute("goodsCount", TEST_GOODS_COUNT);
         return "catalog/catalog";
     }
-
+    @RequestMapping(value = "/showMore", method = RequestMethod.POST)
+    public String showMoreGoods(Long id, Integer page, Integer limit, Model model) {
+        // Эта страшная проверка с page и limit только для теста, так как у нас пока нет реальных данных
+        List<GoodInfo> goods = catalogService.getGoodsByCategoryId(id);
+        if (TEST_GOODS_COUNT + limit > page * limit){
+            model.addAttribute("goods", (TEST_GOODS_COUNT> page * limit) ? goods : goods.subList(0, TEST_GOODS_COUNT + limit - page * limit));
+        }
+        return "catalog/ajaxGoods";
+    }
     /**
      * Отображение главной страницы каталога
      */

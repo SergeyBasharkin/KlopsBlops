@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <meta charset="UTF-8">
     <title>${title}</title>
     <link rel="shortcut icon" href="/resources/images/ico/favicon.ico" />

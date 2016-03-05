@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,24 +18,29 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/cart")
 public class CartController {
+
     @Autowired
     private HttpServletRequest request;
-
-    @Autowired
-    private GoodService goodService;
-
     @Autowired
     private CartService cartService;
 
-    @RequestMapping(value = "/add/{id}",method = RequestMethod.GET)
-    public String add(@PathVariable Long id){
-        GoodInfo goodInfo=goodService.getGoodById(id);
-        cartService.addInCart(goodInfo, request);
-
-
-        return "redirect:/cart";
+    /**
+     * Отображение содержимого коорзины
+     */
+    @RequestMapping
+    public String renderCart() {
+        return "cart/cartPage";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String renderCart(){return "cart/cart";}
+    /**
+     * Добавление товара в корзину
+     *
+     * @param goodId id товара
+     */
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String addInCart(Long goodId) {
+        cartService.addInCart(request.getSession(), goodId, 1);
+        return "ok";
+    }
 }
