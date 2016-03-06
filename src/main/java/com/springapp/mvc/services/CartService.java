@@ -38,4 +38,12 @@ public class CartService {
         }
         session.setAttribute(Constants.SESSION_CART, cart);
     }
+    public void removeInCart(HttpSession session,Long goodId){
+        CartInfo cart = (CartInfo) session.getAttribute(Constants.SESSION_CART);
+        if (cart != null) {
+            cart.getGoods().remove(goodId);
+        }
+    }
+
+    public CartInfo getCart(HttpSession session){return (CartInfo) session.getAttribute(Constants.SESSION_CART);}
 }
