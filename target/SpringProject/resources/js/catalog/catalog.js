@@ -67,13 +67,16 @@ $(document).ready(function () {
     $(document).on('click', '.js_addToCart', function () {
         event.preventDefault();
         var $this = $(this);
+        var $price=$('.js_price');
+        var price=parseInt($price.text());
         $.ajax({
             type: 'POST',
             url: '/cart/add',
             data: {goodId: $this.data('id')},
             success: function (data, status) {  // успешное завершение работы
-                console.log('/cart/add result: data=' + data + '; status=' + status);
                 if (data == 'ok') {
+                    var price=$this.data('price');
+                    $('.jsPrice').text(12230);
                     $this.removeClass('js_addToCart').text('Go in cart').css('background', 'rgb(280, 124, 83)');
                 }
             },
@@ -87,7 +90,7 @@ $(document).ready(function () {
         event.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/good/' + $(this).data('id'),
+            url: '/good/details/' + $(this).data('id'),
             //dataType: 'json',
             success: function (data, status) {  // успешное завершение работы
                 alert(JSON.stringify(data, "", 4));

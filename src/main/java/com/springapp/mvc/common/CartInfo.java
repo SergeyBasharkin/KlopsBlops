@@ -22,4 +22,10 @@ public class CartInfo {
     public void setGoods(Map<Long, Integer> goods) {
         this.goods = goods;
     }
+
+    public boolean containsGoodId(Long goodId){
+        if (goods == null || goodId == null)
+            return false;
+        return goods.containsKey(goodId);
+    }
 }

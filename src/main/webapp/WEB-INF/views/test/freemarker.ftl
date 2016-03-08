@@ -5,6 +5,7 @@
 
 <h3>Ссылка на официальную документацию <a href="http://freemarker.incubator.apache.org/docs/index.html">FreeMarker</a></h3><br>
 
+
 ${param1} - отображение значения переменной<br><br>
 
 ${param2!} - отображение значения переменной только если оно существует<br><br>

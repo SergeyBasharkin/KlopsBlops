@@ -43,4 +43,13 @@ public class TestController {
         map.put("key5", 500L);
         return map;
     }
+
+    @RequestMapping(value = "/cart",method = RequestMethod.GET)
+    public String testCart(){
+        return "test/testCart";
+    }
+    @RequestMapping(value = "/cartPage",method = RequestMethod.GET)
+    public String testCartPage(){
+        return "test/testCartPage";
+    }
 }

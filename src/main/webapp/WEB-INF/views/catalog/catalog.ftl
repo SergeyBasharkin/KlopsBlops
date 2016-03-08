@@ -1,12 +1,12 @@
 <#-- @ftlvariable name="goods" type="java.util.List<com.springapp.mvc.common.GoodInfo>" -->
 <#include "../template/mainTemplate.ftl">
-<@mainTemplate title="Каталог" styles=["css/foundation.css"] scripts=["js/foundation/foundation.js","js/catalog/catalog.js"]/>
+<@mainTemplate title="Каталог" styles=["css/foundation.css","css/test.css","css/cart.css"] scripts=["js/catalog/catalog.js"]/>
 
 <#macro m_body>}
 
     <#include "components/filters.ftl">
     <#include "components/sort.ftl">
-<div class="large-8 columns small-centered">
+<div class="row small-up-1 medium-up-2 large-up-4">
     <div class="row">
         <div id="goodList">
             <#include "components/goodItem.ftl">
