@@ -2,8 +2,7 @@
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate title="Каталог" styles=["css/foundation.css","css/test.css","css/cart.css"] scripts=["js/catalog/catalog.js"]/>
 
-<#macro m_body>}
-
+<#macro m_body>
     <#include "components/filters.ftl">
     <#include "components/sort.ftl">
 <div class="row small-up-1 medium-up-2 large-up-4">

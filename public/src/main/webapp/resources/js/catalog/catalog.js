@@ -2,11 +2,10 @@
  * Created by Admin on 05.03.2016.
  */
 $(document).ready(function () {
-    $(document).on('click', '.js_change', function(){
-        var $this=$(this);
-        var count=$this.data('count');
-
-        var id=$this.data('id');
+    $(document).on('click', '.js_change', function () {
+        var $this = $(this);
+        var count = $this.data('count');
+        var id = $this.data('id');
         $.ajax({
             type: "POST",
             url: "/cart/change",
@@ -14,16 +13,16 @@ $(document).ready(function () {
                 id: id,
                 count: count
             }
-        }).done(function(data){
-            if (data=='0'){
-                $('.'+$this.data("id")).hide();
+        }).done(function (data) {
+            if (data == '0') {
+                    $('.' + $this.data("id")).hide();
             }
-            if (data!=''){
-                $('#count_'+id).text(data);
-            }else {
+            if (data != '') {
+                $('#count_' + id).text(data);
+            } else {
                 $this.hide();
             }
-        }).fail(function(){
+        }).fail(function () {
             $this.hide();
         })
     });
@@ -67,15 +66,15 @@ $(document).ready(function () {
     $(document).on('click', '.js_addToCart', function () {
         event.preventDefault();
         var $this = $(this);
-        var $price=$('.js_price');
-        var price=parseInt($price.text());
+        var $price = $('.js_price');
+        var price = parseInt($price.text());
         $.ajax({
             type: 'POST',
             url: '/cart/add',
             data: {goodId: $this.data('id')},
             success: function (data, status) {  // успешное завершение работы
                 if (data == 'ok') {
-                    var price=$this.data('price');
+                    var price = $this.data('price');
                     $('jsTest').text(12230);
                     $this.removeClass('js_addToCart').text('Go in cart').css('background', 'rgb(280, 124, 83)');
                 }

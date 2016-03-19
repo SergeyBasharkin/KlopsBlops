@@ -1,6 +1,6 @@
 <div class="fixed">
 
-<nav class="top-bar" data-topbar role="navigation">
+<nav id="myHeader" class="top-bar" data-topbar role="navigation">
 
 
     <ul class="title-area">
