@@ -101,11 +101,11 @@
         }
 
         /* data rows */
-        .row {
+        .rowb {
             padding: 15px 20px;
             overflow: hidden;
         }
-        .row.header {
+        .rowb.header {
             background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2U3ZTdlNyIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
             background-size: 100%;
             background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #e7e7e7));
@@ -123,15 +123,15 @@
             text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.75);
             font: bold 11px Arial;
         }
-        .row.items {
+        .rowb.items {
             color: #e54040;
             font: bold 18px Arial;
             position: relative;
         }
-        .row.items span:first-child {
+        .rowb.items span:first-child {
             color: #000000;
         }
-        .row.items:after {
+        .rowb.items:after {
             content: '';
             position: absolute;
             height: 1px;
@@ -145,23 +145,23 @@
             left: 0;
             top: 97%;
         }
-        .row.checkout {
+        .rowb.checkout {
             font: normal 12px Arial;
         }
-        .row.checkout span:first-child {
+        .rowb.checkout span:first-child {
             padding: 3px 0;
         }
-        .row.checkout a {
+        .rowb.checkout a {
             color: #e54040;
             text-decoration: none;
         }
-        .row.checkout a:hover {
+        .rowb.checkout a:hover {
             text-decoration: underline;
         }
-        .row span:first-child {
+        .rowb span:first-child {
             float: left;
         }
-        .row span:last-child {
+        .rowb span:last-child {
             float: right;
         }
 
@@ -209,15 +209,15 @@
 <div class="cart">
 
     <div class="popup">
-        <div class="row header">
+        <div class="rowb header">
             <span>Items</span>
             <span>Amount</span>
         </div>
-        <div class="row items">
+        <div class="rowb items">
             <span>36</span>
             <span>$2,345.12</span>
         </div>
-        <div class="row checkout">
+        <div class="rowb checkout">
             <span><a href="#">View Cart &gt;</a></span>
             <span class="checkout-button">Checkout</span>
         </div>

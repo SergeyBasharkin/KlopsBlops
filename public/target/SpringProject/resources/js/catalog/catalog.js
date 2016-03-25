@@ -5,7 +5,6 @@ $(document).ready(function () {
     $(document).on('click', '.js_change', function () {
         var $this = $(this);
         var count = $this.data('count');
-
         var id = $this.data('id');
         $.ajax({
             type: "POST",
@@ -16,9 +15,7 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data == '0') {
-                if (confirm("Are you sure?")) {
                     $('.' + $this.data("id")).hide();
-                }
             }
             if (data != '') {
                 $('#count_' + id).text(data);

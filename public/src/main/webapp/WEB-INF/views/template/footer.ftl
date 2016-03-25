@@ -1,6 +1,6 @@
-<footer class="row">
+<footer class="rowb">
     <div class="large-12 columns"><hr />
-        <div class="row">
+        <div class="rowb">
 
             <div class="large-6 columns">
                 <p>&copy; Copyright no one at all. Go to town.</p>

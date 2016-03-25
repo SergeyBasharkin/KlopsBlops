@@ -1,5 +1,6 @@
 package com.springapp.mvc.controllers;
 
+import com.springapp.mvc.aspects.annotation.IncludeCategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
 import com.springapp.mvc.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,7 @@ public class CatalogController {
      * @return отображение каталога
      */
 
-
-
+    @IncludeCategoryInfo
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String renderCatalog(@PathVariable("id") Long id,
                                 @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,

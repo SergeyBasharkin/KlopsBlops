@@ -29,7 +29,12 @@ $(window).scroll(function () {
         }
     }
 });
-
+jQuery(function($) {
+    $(".left_swap").click(function (){
+        $(".left_side").toggle();
+        return false;
+    });
+})
 $(window).resize(function () {
     if (stickySidebar.length > 0) {
         stickyHeight = stickySidebar.height();

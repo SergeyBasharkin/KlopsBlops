@@ -5,14 +5,15 @@
 <#macro m_body>
     <#include "components/filters.ftl">
     <#include "components/sort.ftl">
-<div class="row small-up-1 medium-up-2 large-up-4">
-    <div class="row">
-        <div id="goodList">
+<div class="rowb catalog">
+        <ul id="goodList" class="medium-block-grid-3">
+
             <#include "components/goodItem.ftl">
                     <#list goods as good>
             <@goodItem good=good itemClass=((good_index+1)%3==0)?string("last", "") />
         </#list>
-        </div>
+
+        </ul>
     ${limit}
         ${goodsCount}
         ${page}
@@ -22,5 +23,4 @@
             </div>
         </#if>
     </div>
-</div>
 </#macro>

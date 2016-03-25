@@ -13,7 +13,6 @@
     </ul>
     <section class="top-bar-section">
         <!-- Right Nav Section -->
-    <#include "../cart/components/simpleCart.ftl"/>
 
         <ul class="right">
             <li class="has-dropdown">

@@ -17,33 +17,34 @@
 <body>
     <#include "header.ftl" />
 <div class="main-content">
-
-    <div class="small-3 medium-4 columns">
+        <div class="small-2 columns left_side ">
         <br>
         <br>
         <br>
         <br>
         <br>
         <br>
-        <article id="sidebar" class="events-press-cta panel sticky">
+        <article id="sidebar" class="events-press-cta panel sticky left_menu">
+            <#include "../cart/components/simpleCart.ftl"/>
             <p class="lead">What are you going to do with it?</p>
             <p class="lead">Can't we just let it go? It's not harming anyone.</p>
             How we can help:
             <ul>
-                <li>Feature it here!</li>
-                <li>Help promote it.</li>
-                <li>Review material for accuracy.</li>
-                <li>Stickers!</li>
+            <#list catList as category>
+                <li>
+                 ${category.name}
+                </li>
+            </#list>
             </ul>
-
             <a class="tiny button" href="#">Contact us</a>
         </article>
 
     </div>
+    <a href="#" class="left_swap menu-icon"></a>
+
 
 
     <@m_body />
-
 
 </div>
 

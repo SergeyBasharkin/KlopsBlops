@@ -1,6 +1,10 @@
 package com.springapp.mvc.services;
 
+import com.springapp.mvc.common.CategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
+import com.springapp.mvc.repositories.CategoryRepository;
+import com.springapp.mvc.repositories.hibernate.CategoryRepositoryHibernate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -22,6 +26,9 @@ public class CatalogService {
      * @param categoryId id категории
      * @return список товаров
      */
+    @Autowired
+    CategoryRepository categoryRepositoryHibernate;
+
     public List<GoodInfo> getGoodsByCategoryId(Long categoryId) {
         List<GoodInfo> goods = new ArrayList<GoodInfo>();
         goods.add(new GoodInfo(1L, "Медведь", categoryId, new BigDecimal(100)));
@@ -33,5 +40,11 @@ public class CatalogService {
 
         return goods;
     }
+
+    public CategoryInfo getCategoryById(Long id){
+
+        return categoryRepositoryHibernate.getCategoryById(id);
+    }
+
 
 }

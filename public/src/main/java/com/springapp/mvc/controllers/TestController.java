@@ -1,5 +1,6 @@
 package com.springapp.mvc.controllers;
 
+import com.springapp.mvc.common.CategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class TestController {
         request.setAttribute("param1", "value1");
         request.setAttribute("list", Arrays.asList("Пушкин", "Горький", "Толстой"));
         request.setAttribute("testMap", getTestMap());
-        request.setAttribute("goodObject", new GoodInfo(12L, "Название товара", 15L, new BigDecimal(1000)));
+        request.setAttribute("goodObject", new GoodInfo(12L, "Название товара", new CategoryInfo(), new BigDecimal(1000)));
         return "test/freemarker";
     }
 

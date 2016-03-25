@@ -26,7 +26,7 @@ public class GoodController {
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public String goodInfo(@PathVariable("id") Long id){
-        GoodInfo good=goodService.getGoodById(id);
+        GoodInfo good=goodService.getGood(id);
         request.setAttribute("good",good);
         return "good/goodPage";
     }
@@ -34,6 +34,6 @@ public class GoodController {
     @ResponseBody
     @RequestMapping(value = "/details/{id}",method = RequestMethod.POST)
     public GoodInfo getInfo(@PathVariable("id") Long id){
-        return goodService.getGoodById(id);
+        return goodService.getGood(id);
     }
 }

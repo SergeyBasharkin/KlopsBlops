@@ -17,7 +17,7 @@
 
         <#--</div>-->
     <#--</div>-->
-    <div div class="large-4 small-6 columns margbutt ${itemClass}">
+  <li  class="margbutt ${itemClass}">
         <div class="th">
             <div class="item-wrapper">
                 <div class="img-wrapper">
@@ -37,6 +37,7 @@
                 <p class="hi">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere sem enim, accumsan convallis risus semper.</p>
             </div>
         </div>
-    </div>
+    </li>
+
 <#--</div>-->
 </#macro>

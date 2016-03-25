@@ -15,7 +15,7 @@
 
 <#macro m_body>}
 <div class="large-8 columns small-centered">
-    <div class="row">
+    <div class="rowb ">
         <div id="goodList">
             <#include "components/cartItem.ftl">
             <#if (fCart)??>

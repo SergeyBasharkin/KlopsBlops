@@ -46,6 +46,34 @@ meta.foundation-data-attribute-namespace {
 html, body {
   height: 100%; }
 
+.main-content {
+  overflow: hidden;
+  min-width: 380px;
+}
+.left_side {
+  position: fixed;
+  height: 100%;
+  width: 15%;
+  min-width: 168px;
+  left: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.left_swap{
+  display: none;/* По умолчанию блок не виден,
+    он показывается, если срабатывает медиазапрос */
+  position: fixed;
+  width: 50px;
+  left: 0;
+  top: 40px;
+  height: 100%;
+  background: top 50px;
+  background-image:  url(../../img/swipe.png) ;
+  background-repeat: no-repeat;
+  z-index: 6;
+
+}
 *,
 *:before,
 *:after {
@@ -134,7 +162,26 @@ textarea {
 
 select {
   width: 100%; }
-
+.catalog {
+  left: 10%;
+  position: relative;
+  min-height: 200%;
+  min-width: 170px;
+  max-width: 1200px;
+  padding-left: 300px;
+  padding-right: 0px;
+}
+@media screen and (max-width:1250px){
+  .left_side{
+    display: none;
+  }
+  .left_swap{
+    display: block;
+  }
+  .wrapper{
+    padding-left: 50px;
+  }
+}
 .row {
   margin: 0 auto;
   max-width: 62.5rem;
@@ -2997,7 +3044,8 @@ meta.foundation-mq-topbar {
 /* Image Thumbnails */
 .th {
   display: inline-block;
-  transition: all 200ms ease-out; }
+  transition: all 200ms ease-out;
+  max-width: 320px !important;}
 
 
 /* Pricing Tables */
