@@ -59,7 +59,12 @@ html, body {
   top: 0;
   z-index: 5;
 }
-
+.watch{
+  /*max-width: 230px;*/
+  /*max-height: 270px;*/
+  /*width: 230px;*/
+  /*height: 270px;*/
+}
 .left_swap{
   display: none;/* По умолчанию блок не виден,
     он показывается, если срабатывает медиазапрос */
@@ -1203,6 +1208,9 @@ select {
     right: auto; }
   .item-wrapper {
     margin-top: 40px;
+    width: 310px;
+    height: 600px;
+    overflow: hidden;
   }
   .item-wrapper:hover .img-wrapper img {
     -webkit-filter: grayscale(0);

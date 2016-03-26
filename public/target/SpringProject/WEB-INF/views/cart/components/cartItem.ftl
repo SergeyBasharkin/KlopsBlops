@@ -21,9 +21,10 @@
     <div class="th ${goodId}">
         <div class="item-wrapper">
             <div class="img-wrapper">
-                <img src="http://i.imgur.com/Mcw06Yt.png">
+                <img class="watch" src="${goods[goodId?number].imageUrl}">
             </div>
-            <h3>${goodId}</h3>
+            <#assign colors = ["red", "green", "blue"]>
+            <h3>${goods[goodId?number].name}</h3>
              <a class="js_change fi-minus minus" data-count="-1" data-id="${goodId}"></a>
             (кол-во:<span id="count_${goodId}">${fCart[goodId]}</span>)
            <a class="js_change fi-plus plus" data-count="1" data-id="${goodId}"></a>

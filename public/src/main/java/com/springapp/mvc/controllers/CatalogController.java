@@ -66,9 +66,18 @@ public class CatalogController {
     /**
      * Отображение главной страницы каталога
      */
+
+    @IncludeCategoryInfo
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String mainCatalog(HttpServletRequest request) {
-        request.setAttribute("message", "Главная страница каталога");
-        return "catalog/catalogMain";
+    public String mainCatalog(HttpServletRequest request,Model model,@PathVariable("id") Long id,
+                              @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                              Long limit) {
+        List<GoodInfo> goods = catalogService.getAllGoods();
+        model.addAttribute("goods", goods);
+
+        model.addAttribute("page", page);
+        model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
+        model.addAttribute("goodsCount", TEST_GOODS_COUNT);
+        return "catalog/catalog";
     }
 }

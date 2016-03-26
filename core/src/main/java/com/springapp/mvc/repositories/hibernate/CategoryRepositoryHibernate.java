@@ -33,25 +33,27 @@ public class CategoryRepositoryHibernate implements CategoryRepository {
 
     @Override
     public CategoryInfo getCategoryById(Long id) {
-        return (CategoryInfo) curSession().get(CategoryInfo.class,id);
+        return (CategoryInfo) curSession().get(CategoryInfo.class, id);
     }
 
     @Override
     public List<CategoryInfo> getAllCat() {
-        ArrayList<CategoryInfo> categoryInfos= (ArrayList<CategoryInfo>) curSession().createCriteria(CategoryInfo.class).list();
+        ArrayList<CategoryInfo> categoryInfos = (ArrayList<CategoryInfo>) curSession().createCriteria(CategoryInfo.class).list();
         return categoryInfos;
     }
 
     @Override
     public List<CategoryInfo> getParentCat() {
-        SQLQuery sqlQuery=curSession().createSQLQuery("SELECT * FROM h_categories WHERE id=h_categories.parent_id").addEntity(CategoryInfo.class);
-        List <CategoryInfo> parentCat=sqlQuery.list();
+        SQLQuery sqlQuery = curSession().createSQLQuery("SELECT * FROM h_categories WHERE id=h_categories.parent_id").addEntity(CategoryInfo.class);
+        List<CategoryInfo> parentCat = sqlQuery.list();
         return parentCat;
     }
 
     @Override
     public List<CategoryInfo> getChildCat(Long parentId) {
-        List <CategoryInfo> childCat=curSession().createCriteria(CategoryInfo.class).add(Restrictions.eq("parent",parentId)).list();
+        List<CategoryInfo> childCat = curSession().createCriteria(CategoryInfo.class)
+                .add(Restrictions
+                        .and(Restrictions.eq("parent", parentId), Restrictions.ne("id", parentId))).list();
         return childCat;
     }
 }

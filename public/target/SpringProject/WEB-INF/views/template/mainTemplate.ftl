@@ -17,7 +17,7 @@
 <body>
     <#include "header.ftl" />
 <div class="main-content">
-        <div class="small-2 columns left_side ">
+    <div class="small-2 columns left_side ">
         <br>
         <br>
         <br>
@@ -26,15 +26,20 @@
         <br>
         <article id="sidebar" class="events-press-cta panel sticky left_menu">
             <#include "../cart/components/simpleCart.ftl"/>
-            <p class="lead">What are you going to do with it?</p>
-            <p class="lead">Can't we just let it go? It's not harming anyone.</p>
-            How we can help:
+            <p class="lead">Category</p>
             <ul>
-            <#list catList as category>
-                <li>
-                 ${category.name}
-                </li>
-            </#list>
+                <#list parentCat as category>
+                    <li>
+                    ${category.name}
+                        <ul>
+                            <#list category.children as child>
+                                <#if child.id!=category.id>
+                                    <li>${child.name}</li>
+                                </#if>
+                            </#list>
+                        </ul>
+                    </li>
+                </#list>
             </ul>
             <a class="tiny button" href="#">Contact us</a>
         </article>

@@ -18,7 +18,7 @@
         ${goodsCount}
         ${page}
         <#if limit < goodsCount >
-            <div id="showMore" class="show-more-button" data-id="${id}" data-page="${page+1}" data-limit="${limit}">
+            <div id="showMore" class="show-more-button" data-id="<#if id?? >${id}</#if>" data-page="${page+1}" data-limit="${limit}">
                 Показать еще (<span id="limit">${limit}</span>) из <span id="goodsCount">${goodsCount-limit}</span>
             </div>
         </#if>

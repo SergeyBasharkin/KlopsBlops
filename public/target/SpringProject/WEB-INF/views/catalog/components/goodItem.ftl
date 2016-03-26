@@ -30,11 +30,11 @@
                         Add to Cart
                     </a>
                     </#if>
-                    <a href="#" class="js_goodDetail" data-id="${good.id}"><img src="http://i.imgur.com/Mcw06Yt.png"></a>
+                    <a href="#" class="js_goodDetail" data-id="${good.id}"><img class="watch" src="${good.imageUrl}"></a>
                 </div>
                 <h3>${good.name}</h3>
                 <h5>$${good.price?number}</h5>
-                <p class="hi">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin posuere sem enim, accumsan convallis risus semper.</p>
+                <p class="hi">${good.description}</p>
             </div>
         </div>
     </li>

@@ -1,5 +1,6 @@
 package com.springapp.mvc.controllers;
 
+import com.springapp.mvc.aspects.annotation.IncludeCategoryInfo;
 import com.springapp.mvc.common.CartInfo;
 import com.springapp.mvc.common.GoodInfo;
 import com.springapp.mvc.services.CartService;
@@ -33,9 +34,11 @@ public class CartController {
     /**
      * Отображение содержимого коорзины
      */
+
+    @IncludeCategoryInfo
     @RequestMapping
     public String renderCart(Model model) {
-        List<GoodInfo> goods = catalogService.getGoodsByCategoryId((long) 1);
+        List<GoodInfo> goods = catalogService.getAllGoods();
         model.addAttribute("goods", goods);
         CartInfo cartInfo=cartService.getCart(request.getSession());
         Map<String,Integer> cartFreemarker=new HashMap<String, Integer>();
@@ -52,6 +55,7 @@ public class CartController {
      *
      * @param goodId id товара
      */
+
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addInCart(Long goodId) {
@@ -59,6 +63,7 @@ public class CartController {
 
         return "ok";
     }
+
     @ResponseBody
     @RequestMapping(value = "/change",method = RequestMethod.POST)
     public Integer changeGood(Long id, Integer count){

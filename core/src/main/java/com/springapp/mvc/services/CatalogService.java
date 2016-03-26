@@ -2,6 +2,7 @@ package com.springapp.mvc.services;
 
 import com.springapp.mvc.common.CategoryInfo;
 import com.springapp.mvc.common.GoodInfo;
+import com.springapp.mvc.repositories.CatalogRepository;
 import com.springapp.mvc.repositories.CategoryRepository;
 import com.springapp.mvc.repositories.hibernate.CategoryRepositoryHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +28,18 @@ public class CatalogService {
      * @return список товаров
      */
     @Autowired
-    CategoryRepository categoryRepositoryHibernate;
+    CatalogRepository catalogRepository;
 
     public List<GoodInfo> getGoodsByCategoryId(Long categoryId) {
-        List<GoodInfo> goods = new ArrayList<GoodInfo>();
-        goods.add(new GoodInfo(1L, "Медведь", categoryId, new BigDecimal(100)));
-        goods.add(new GoodInfo(2L, "Кукла 1", categoryId, new BigDecimal(200)));
-        goods.add(new GoodInfo(3L, "Кукла 2", categoryId, new BigDecimal(200)));
-        goods.add(new GoodInfo(4L, "Кукла 3", categoryId, new BigDecimal(200)));
-        goods.add(new GoodInfo(5L, "Кукла 4", categoryId, new BigDecimal(200)));
-        goods.add(new GoodInfo(6L, "Автомобиль Aud", categoryId, new BigDecimal(500)));
+        List<GoodInfo> goods=catalogRepository.getGoodsByCatId(categoryId);
 
         return goods;
     }
 
-    public CategoryInfo getCategoryById(Long id){
+    public List<GoodInfo> getAllGoods(){
+        List<GoodInfo> goods=catalogRepository.getAllGoods();
 
-        return categoryRepositoryHibernate.getCategoryById(id);
+        return goods;
     }
-
 
 }
