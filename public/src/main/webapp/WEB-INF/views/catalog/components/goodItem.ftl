@@ -17,10 +17,12 @@
 
         <#--</div>-->
     <#--</div>-->
-  <li  class="margbutt ${itemClass}">
+
+
+  <li  class="margbutt ${itemClass} ">
         <div class="th">
-            <div class="item-wrapper">
-                <div class="img-wrapper">
+            <div class="item-wrapper cd-item">
+                <div class="img-wrapper ${good.id}" data-id="${good.id}" >
                     <#if (Session.cart.goods)?? && Session.cart.containsGoodId(good.id)>
                         <a href="/cart" class="button expand add-to-cart" style="background: rgb(280, 124, 83)" data-id="${good.id}" data-price="${good.price?number}">
                             Go in Cart
@@ -30,10 +32,10 @@
                         Add to Cart
                     </a>
                     </#if>
-                    <a href="#" class="js_goodDetail" data-id="${good.id}"><img class="watch" src="${good.imageUrl}"></a>
+                    <a href="#" class="cd-trigger"><img class="watch " src="${good.imageUrl}"></a>
                 </div>
-                <h3>${good.name}</h3>
-                <h5>$${good.price?number}</h5>
+                <h3 class="titleView">${good.name}</h3>
+                <h5 class="priceView">$${good.price?number}</h5>
                 <p class="hi">${good.description}</p>
             </div>
         </div>

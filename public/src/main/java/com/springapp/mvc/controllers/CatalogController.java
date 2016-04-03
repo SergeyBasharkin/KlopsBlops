@@ -69,7 +69,7 @@ public class CatalogController {
 
     @IncludeCategoryInfo
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String mainCatalog(HttpServletRequest request,Model model,@PathVariable("id") Long id,
+    public String mainCatalog(Model model,
                               @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                               Long limit) {
         List<GoodInfo> goods = catalogService.getAllGoods();

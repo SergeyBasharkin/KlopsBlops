@@ -19,8 +19,7 @@
             margin: 0;
             margin-top: 100px;
             position: absolute;
-            left: 50%;
-            margin-left: -20px;
+            left: 70px;
             -moz-border-radius: 9999em;
             -webkit-border-radius: 9999em;
             border-radius: 9999em;

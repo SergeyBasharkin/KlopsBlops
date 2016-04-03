@@ -17,36 +17,8 @@
 <body>
     <#include "header.ftl" />
 <div class="main-content">
-    <div class="small-2 columns left_side ">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <article id="sidebar" class="events-press-cta panel sticky left_menu">
-            <#include "../cart/components/simpleCart.ftl"/>
-            <p class="lead">Category</p>
-            <ul>
-                <#list parentCat as category>
-                    <li>
-                    ${category.name}
-                        <ul>
-                            <#list category.children as child>
-                                <#if child.id!=category.id>
-                                    <li>${child.name}</li>
-                                </#if>
-                            </#list>
-                        </ul>
-                    </li>
-                </#list>
-            </ul>
-            <a class="tiny button" href="#">Contact us</a>
-        </article>
-
-    </div>
+    <#include "sideBar.ftl"/>
     <a href="#" class="left_swap menu-icon"></a>
-
 
 
     <@m_body />
@@ -61,7 +33,8 @@
 <script src="../../../resources/js/foundation/foundation.js"></script>
 
 <!-- or individually -->
-
+<script src="../../../resources/js/catalog/velocity.min.js"></script>
+<script src="../../../resources/js/catalog/jquery.jrumble.1.3.js"></script>
 <script src="../../../resources/js/foundation/foundation.alert.js"></script>
 <!-- ... -->
 
@@ -69,6 +42,7 @@
 <script src="../../../resources/js/foundation/foundation.dropdown.js"></script>
 <script src="../../../resources/js/foundation/foundation.topbar.js"></script>
 <script src="../../../resources/js/catalog/sticky.js"></script>
+<script src="../../../resources/js/catalog/main.js"></script>
 
 <script>
     $(document).foundation();

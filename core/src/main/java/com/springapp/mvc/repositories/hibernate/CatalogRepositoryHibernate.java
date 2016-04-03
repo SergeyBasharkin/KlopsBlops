@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,7 +37,7 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
 
     @Override
     public List<GoodInfo> getAllGoods() {
-        ArrayList<GoodInfo> goods = (ArrayList<GoodInfo>) curSession().createCriteria(GoodInfo.class).list();
+        ArrayList<GoodInfo> goods = (ArrayList<GoodInfo>) curSession().createCriteria(GoodInfo.class).addOrder(Order.asc("id")).list();
         return goods;
     }
 }

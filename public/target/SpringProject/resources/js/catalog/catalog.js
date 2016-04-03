@@ -6,6 +6,11 @@ $(document).ready(function () {
         var $this = $(this);
         var count = $this.data('count');
         var id = $this.data('id');
+        var price=$this.data('price');
+        var $js_count=$('.js_count');
+        var $jsPrice=$('.jsPrice');
+        var totalCount=$js_count.text();
+        var total=$jsPrice.text();
         $.ajax({
             type: "POST",
             url: "/cart/change",
@@ -15,10 +20,16 @@ $(document).ready(function () {
             }
         }).done(function (data) {
             if (data == '0') {
-                    $('.' + $this.data("id")).hide();
+                    $('.' + $this.data("id")).fadeOut(1000);
+
+                $js_count.text(Number(totalCount)+Number(count));
+                $jsPrice.text(Number(total)+Number(price*count));
             }
             if (data != '') {
                 $('#count_' + id).text(data);
+
+                $js_count.text(Number(totalCount)+Number(count));
+                $jsPrice.text(Number(total)+Number(price*count));
             } else {
                 $this.hide();
             }
@@ -62,21 +73,37 @@ $(document).ready(function () {
             }
         }
     });
+    var element = $('.cart').jrumble({
+        speed: 20,
+        x:6,
+        y:6,
+        rotation: 6
+    });
+    var demoTimeout;
+    function rumble(){
+        $this = $('.cart');
+        clearTimeout(demoTimeout);
+        $this.trigger('startRumble');
+        demoTimeout = setTimeout(function(){$this.trigger('stopRumble');}, 1500)
+    };
+
 
     $(document).on('click', '.js_addToCart', function () {
         event.preventDefault();
         var $this = $(this);
-        var $price = $('.js_price');
-        var price = parseInt($price.text());
+        var $price = $('.jsPrice');
+        var price = Number($price.text());
         $.ajax({
             type: 'POST',
             url: '/cart/add',
             data: {goodId: $this.data('id')},
             success: function (data, status) {  // успешное завершение работы
                 if (data == 'ok') {
-                    var price = $this.data('price');
-                    $('jsTest').text(12230);
+                    $price.text(price+Number($this.data('price')));
+                    $('.js_count').text(Number($('.js_count').text())+1)
                     $this.removeClass('js_addToCart').text('Go in cart').css('background', 'rgb(280, 124, 83)');
+                    rumble();
+
                 }
             },
             error: function () {    // На сервере произошла ошибка
@@ -84,7 +111,6 @@ $(document).ready(function () {
             }
         });
     });
-
     $(document).on('click', '.js_goodDetail', function () {
         event.preventDefault();
         $.ajax({

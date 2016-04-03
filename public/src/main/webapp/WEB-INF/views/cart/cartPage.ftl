@@ -11,7 +11,7 @@
 
 <#-- @ftlvariable name="goods" type="java.util.List<com.springapp.mvc.common.GoodInfo>" -->
 <#include "../template/mainTemplate.ftl">
-<@mainTemplate title="Каталог" styles=["css/foundation.css","css/cart.css","css/test.css"] scripts=["js/catalog/catalog.js"]/>
+<@mainTemplate title="Каталог" styles=["css/foundation.css","css/cart.css","css/test.css"] scripts=["js/catalog/catalog.js","js/catalog/jquery.jrumble.1.3.js"]/>
 
 <#macro m_body>}
 <div class="large-8 columns small-centered">

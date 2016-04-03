@@ -50,13 +50,14 @@ html, body {
   overflow: hidden;
   min-width: 380px;
 }
+
 .left_side {
   position: fixed;
   height: 100%;
   width: 15%;
-  min-width: 168px;
+  min-width: 180px;
   left: 0;
-  top: 0;
+  top: 180px;
   z-index: 5;
 }
 .watch{
@@ -91,7 +92,7 @@ body {
   font-size: 100%;  }
 
 body {
-  background: url(https://pp.vk.me/c627423/v627423812/3866f/32pYxXTAcOg.jpg);
+  background: url(../../../resources/img/32pYxXTAcOg.jpg);
   color: #222;
   cursor: auto;
   font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -3172,7 +3173,7 @@ meta.foundation-mq-topbar {
     -o-transform: translateZ(0);
     transform: translateZ(0); }
     .orbit-container .orbit-slides-container img {
-      display: block;
+      display: inline;
       max-width: 100%; }
     .orbit-container .orbit-slides-container > * {
       position: absolute;

@@ -21,13 +21,13 @@
     <div class="th ${goodId}">
         <div class="item-wrapper">
             <div class="img-wrapper">
-                <img class="watch" src="${goods[goodId?number].imageUrl}">
+                <img class="watch" src="${goods[goodId?number-1].imageUrl}">
             </div>
             <#assign colors = ["red", "green", "blue"]>
-            <h3>${goods[goodId?number].name}</h3>
-             <a class="js_change fi-minus minus" data-count="-1" data-id="${goodId}"></a>
+            <h3>${goods[goodId?number-1].name}</h3>
+             <a class="js_change fi-minus minus" data-count="-1" data-id="${goodId}" data-price="${goods[goodId?number-1].price}"></a>
             (кол-во:<span id="count_${goodId}">${fCart[goodId]}</span>)
-           <a class="js_change fi-plus plus" data-count="1" data-id="${goodId}"></a>
+           <a class="js_change fi-plus plus" data-count="1" data-id="${goodId}" data-price="${goods[goodId?number-1].price}"></a>
 
         </div>
     </div>
