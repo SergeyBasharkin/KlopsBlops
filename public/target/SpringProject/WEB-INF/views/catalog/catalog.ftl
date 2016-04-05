@@ -6,25 +6,23 @@
     <#include "components/filters.ftl">
     <#include "components/sort.ftl">
 <div class="rowb catalog">
-        <ul id="goodList" class="medium-block-grid-3">
-
-            <#include "components/goodItem.ftl">
-                    <#list goods as good>
-
-            <@goodItem good=good itemClass=((good_index+1)%3==0)?string("last", "") />
-
-
+    <div id="goods">
+    <ul id="goodList" class="medium-block-grid-3">
+        <#include "components/goodItem.ftl">
+        <#list goods as good>
+            <#if good_index<limit>
+                <@goodItem good=good itemClass=((good_index+1)%3==0)?string("last", "") />
+            </#if>
         </#list>
 
-        </ul>
-    <#include "../good/quickView.ftl"/>
-    ${limit}
-        ${goodsCount}
-        ${page}
-        <#if limit < goodsCount >
-            <div id="showMore" class="show-more-button" data-id="<#if id?? >${id}</#if>" data-page="${page+1}" data-limit="${limit}">
-                Показать еще (<span id="limit">${limit}</span>) из <span id="goodsCount">${goodsCount-limit}</span>
-            </div>
-        </#if>
+    </ul>
     </div>
+    <#include "../good/quickView.ftl"/>
+    <#if limit < goodsCount>
+        <div id="showMore" class="show-more-button" data-id="<#if id?? >${id}<#else >0</#if>" data-page="${page+1}"
+             data-limit="${limit}">
+            Показать еще (<i id="limit">${limit}</i>) из <i id="goodsCount">${goodsCount-limit}</i>
+        </div>
+    </#if>
+</div>
 </#macro>

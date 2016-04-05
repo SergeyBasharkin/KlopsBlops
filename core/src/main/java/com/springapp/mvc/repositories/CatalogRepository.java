@@ -2,6 +2,7 @@ package com.springapp.mvc.repositories;
 
 import com.springapp.mvc.common.GoodInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -10,4 +11,5 @@ import java.util.List;
 public interface CatalogRepository {
     List<GoodInfo> getGoodsByCatId(Long catId);
     List<GoodInfo> getAllGoods();
+    List<GoodInfo> getGoodsByParams(String color,String type,BigDecimal minPrice, BigDecimal maxPrice);
 }

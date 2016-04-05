@@ -6,12 +6,10 @@ import com.springapp.mvc.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -21,10 +19,9 @@ import java.util.List;
  * 22.02.2016 22:46
  */
 @Controller
-@RequestMapping("/catalog")
+@RequestMapping(value = "/catalog" ,method = {RequestMethod.POST,RequestMethod.GET})
 public class CatalogController {
 
-    private static final Integer TEST_GOODS_COUNT = 16;
     private static final Integer TEST_LIMIT = 6;
     @Autowired
     private CatalogService catalogService;
@@ -51,17 +48,27 @@ public class CatalogController {
 
         model.addAttribute("page", page);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
-        model.addAttribute("goodsCount", TEST_GOODS_COUNT);
+        model.addAttribute("goodsCount", goods.size());
         return "catalog/catalog";
     }
     @RequestMapping(value = "/showMore", method = RequestMethod.POST)
     public String showMoreGoods(Long id, Integer page, Integer limit, Model model) {
         // Эта страшная проверка с page и limit только для теста, так как у нас пока нет реальных данных
-        List<GoodInfo> goods = catalogService.getGoodsByCategoryId(id);
-        if (TEST_GOODS_COUNT + limit > page * limit){
-            model.addAttribute("goods", (TEST_GOODS_COUNT> page * limit) ? goods : goods.subList(0, TEST_GOODS_COUNT + limit - page * limit));
+        List<GoodInfo> goods;
+        if (id==0){
+            goods=catalogService.getAllGoods();
+        }else {
+            goods=catalogService.getGoodsByCategoryId(id);
         }
-        return "catalog/ajaxGoods";
+        model.addAttribute("goodsCount", goods.size());
+
+        if (goods.size()>page*limit){
+            goods=goods.subList((page-1)*limit,(page-1)*limit+limit);
+        }else {
+            goods=goods.subList((page-1)*limit,goods.size());
+        }
+        model.addAttribute("goods",goods);
+        return "catalog/ajaxGoodsAdd";
     }
     /**
      * Отображение главной страницы каталога
@@ -77,7 +84,21 @@ public class CatalogController {
 
         model.addAttribute("page", page);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
-        model.addAttribute("goodsCount", TEST_GOODS_COUNT);
+        model.addAttribute("goodsCount", goods.size());
         return "catalog/catalog";
+    }
+
+    @IncludeCategoryInfo
+    @ResponseBody
+    @RequestMapping( value = "/filters",method = RequestMethod.GET)
+    public String filters(Model model, @RequestParam(value = "color")String color, String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                          Long limit){
+        List<GoodInfo> goods=catalogService.getGoodsByParam(color,type,minPrice,maxPrice);
+
+        model.addAttribute("goods",goods);
+        model.addAttribute("page", page);
+        model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
+        model.addAttribute("goodsCount", goods.size());
+        return "catalog/ajaxGoods";
     }
 }

@@ -26,6 +26,10 @@ public class GoodInfo {
     private String name;
 
     private String description;
+
+
+    private String type;
+
     /**
      * id категории товара
      */
@@ -81,6 +85,13 @@ public class GoodInfo {
     public Long getId() {
 
         return id;
+    }
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setId(Long id) {

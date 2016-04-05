@@ -35,11 +35,15 @@ public class CatalogService {
 
         return goods;
     }
-
     public List<GoodInfo> getAllGoods(){
         List<GoodInfo> goods=catalogRepository.getAllGoods();
 
         return goods;
+    }
+
+    public List<GoodInfo> getGoodsByParam(String color,String type,BigDecimal minPrice,BigDecimal maxPrice){
+      List<GoodInfo> goods=catalogRepository.getGoodsByParams(color,type,minPrice,maxPrice);
+    return goods;
     }
 
 }

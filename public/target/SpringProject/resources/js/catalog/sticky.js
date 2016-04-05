@@ -17,12 +17,7 @@ $(window).scroll(function () {
             stickySidebar.css('top', scrollTop - sidebarTop);
 
             // stop the sticky sidebar at the footer to avoid overlapping
-            var sidebarBottom = stickySidebar.offset().top + stickyHeight,
-                stickyStop = $('.main-content').offset().top + $('.main-content').height();
-            if (stickyStop < sidebarBottom) {
-                var stopPosition = $('.main-content').height() ;
-                stickySidebar.css('top', stopPosition);
-            }
+
         }
         else {
             stickySidebar.css('top', '0');
@@ -31,7 +26,7 @@ $(window).scroll(function () {
 });
 jQuery(function($) {
     $(".left_swap").click(function (){
-        $(".left_side").toggle();
+        $(".left_side").toggle(200);
         return false;
     });
 })

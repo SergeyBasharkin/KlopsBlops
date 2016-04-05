@@ -22,10 +22,10 @@
 
 
     <@m_body />
-
+    <#include "footer.ftl" />
 </div>
 
-    <#include "footer.ftl" />
+
 
 
 <script src="../../../resources/js/vendor/jquery.js"></script>

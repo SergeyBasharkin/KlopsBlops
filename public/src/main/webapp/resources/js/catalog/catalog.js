@@ -87,7 +87,27 @@ $(document).ready(function () {
         demoTimeout = setTimeout(function(){$this.trigger('stopRumble');}, 1500)
     };
 
-
+    $(document).on('click', '#find',function(){
+        var $this=$(this);
+        var color=$('.color').val();
+        $.ajax({
+            type: 'GET',
+            url: '/catalog/filters',
+            data: {
+                color: color,
+                type: $('#type').val(),
+                minPrice: $('#minPrice').val(),
+                maxPrice: $('#maxPrice').val()
+            },
+            success: function(data){
+                $('.catalog').remove();
+                $('.main-content').append(data);
+            },
+            error: function(){
+                alert('ошибка');
+            }
+        })
+    });
     $(document).on('click', '.js_addToCart', function () {
         event.preventDefault();
         var $this = $(this);

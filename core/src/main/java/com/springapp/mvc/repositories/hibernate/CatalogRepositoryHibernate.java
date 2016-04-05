@@ -12,6 +12,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,15 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
     public List<GoodInfo> getAllGoods() {
         ArrayList<GoodInfo> goods = (ArrayList<GoodInfo>) curSession().createCriteria(GoodInfo.class).addOrder(Order.asc("id")).list();
         return goods;
+    }
+
+    @Override
+    public List<GoodInfo> getGoodsByParams(String color, String type, BigDecimal minPrice, BigDecimal maxPrice) {
+        SQLQuery sqlQuery=curSession().createSQLQuery("SELECT h_goods.id,h_goods.price,h_goods.name,h_goods.description,h_goods.imageurl,h_goods.type,h_goods.category_id FROM h_goods, h_colors,colors_goods " +
+                "WHERE h_colors.name= :color AND h_goods.type=:type AND h_goods.price BETWEEN :minPrice AND :maxPrice " +
+                "AND h_colors.id=colors_goods.color_id AND h_goods.id=colors_goods.good_id").addEntity(GoodInfo.class);
+        Query query=sqlQuery.setString("color",color).setString("type",type).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+        List<GoodInfo> goodsByCat=query.list() ;
+        return goodsByCat;
     }
 }
