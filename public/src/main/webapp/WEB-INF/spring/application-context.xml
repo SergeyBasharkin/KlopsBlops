@@ -5,4 +5,7 @@
 
     <!-- Подключаем файл конфигураций Spring для работы с JDBC -->
     <import resource="classpath*:spring-core.xml" />
+
+    <import resource="spring-security.xml" />
+
 </beans>
