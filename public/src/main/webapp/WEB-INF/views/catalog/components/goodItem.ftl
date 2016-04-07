@@ -39,6 +39,7 @@
                 <p class="hi">${good.description}</p>
             </div>
         </div>
+      <#include "../../good/quickView.ftl"/>
     </li>
 
 <#--</div>-->

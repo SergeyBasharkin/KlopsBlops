@@ -1,5 +1,5 @@
-<div class="small-2 columns left_side ">
-    <article id="sidebar" class="events-press-cta panel sticky left_menu">
+<div class="small-2 columns sticky left_side ">
+    <article id="sidebar" class="events-press-cta panel left_menu">
     <#include "../cart/components/simpleCart.ftl"/>
         <p class="lead">Category</p>
         <ul class="category">
@@ -23,8 +23,8 @@
             <input title="blue" class="color" type="checkbox" name="color" value="Blue">Blue<br>
             <input title="white" class="color" type="checkbox" name="color" value="White">White<br>
             <p class="lead">Type</p>
-            <input title="mechanical" id="type" type="radio" name="type" value="mechanical">Mechanical
-            <input title="battery" id="type" type="radio" name="type" value="battery">Battery
+            <input title="mechanical" class="type" type="radio" name="type" value="mechanical">Mechanical
+            <input title="battery" class="type" type="radio" name="type" value="battery">Battery
             <p class="lead">Price</p>
             <input title="minPrice" id="minPrice" type="text" size="20" value="100" name="minPrice">
             <input title="maxPrice" id="maxPrice" type="text" size="20" value="10000" name="maxPrice">

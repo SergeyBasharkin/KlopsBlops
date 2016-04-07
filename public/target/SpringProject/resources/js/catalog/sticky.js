@@ -5,7 +5,8 @@ var stickySidebar = $('.sticky');
 
 if (stickySidebar.length > 0) {
     var stickyHeight = stickySidebar.height(),
-        sidebarTop = stickySidebar.offset().top;
+        sidebarTop = stickySidebar.offset().top,
+        myHeaderHeight=$("#myHeader").height();
 }
 
 // on scroll move the sidebar
@@ -13,14 +14,12 @@ $(window).scroll(function () {
     if (stickySidebar.length > 0) {
         var scrollTop = $(window).scrollTop();
 
-        if (sidebarTop < scrollTop+$("#myHeader").height()) {
-            stickySidebar.css('top', scrollTop - sidebarTop);
-
-            // stop the sticky sidebar at the footer to avoid overlapping
-
+        if (sidebarTop < scrollTop+myHeaderHeight) {
+             stickySidebar.css('top', scrollTop - sidebarTop);
+            
         }
         else {
-            stickySidebar.css('top', '0');
+            // stickySidebar.css('top', '0');
         }
     }
 });

@@ -6,6 +6,9 @@ import com.springapp.mvc.common.GoodInfo;
 import com.springapp.mvc.services.CartService;
 import com.springapp.mvc.services.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +50,8 @@ public class CartController {
 
         }
         request.setAttribute("fCart",cartFreemarker);
+        request.getUserPrincipal().getName();
+        //SecurityContextHolder.getContext().getAuthentication().getPrincipal()
         return "cart/cartPage";
     }
 

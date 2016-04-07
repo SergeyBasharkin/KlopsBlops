@@ -5,7 +5,6 @@
 <div class="">
     <div class="medium-6 medium-centered large-4 columns">
     <div class="container">
-        <h3>Account</h3>
         <div class="col-md-7 account-top">
             <#if error??>
                 <div data-alert class="alert-box alert">

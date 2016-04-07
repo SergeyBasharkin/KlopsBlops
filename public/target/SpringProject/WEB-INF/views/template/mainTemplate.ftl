@@ -22,9 +22,9 @@
 
 
     <@m_body />
-    <#include "footer.ftl" />
-</div>
 
+</div>
+    <#include "footer.ftl" />
 
 
 

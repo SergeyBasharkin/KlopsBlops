@@ -9,9 +9,6 @@
         </ul>
     </div>
 <#include "../good/quickView.ftl"/>
-${limit}
-${goodsCount}
-${page}
 <#if limit < goodsCount >
     <div id="showMore" class="show-more-button" data-id="<#if id?? >${id}</#if>" data-page="${page+1}"
          data-limit="${limit}">

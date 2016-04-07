@@ -89,7 +89,6 @@ public class CatalogController {
     }
 
     @IncludeCategoryInfo
-    @ResponseBody
     @RequestMapping( value = "/filters",method = RequestMethod.GET)
     public String filters(Model model, @RequestParam(value = "color")String color, String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                           Long limit){

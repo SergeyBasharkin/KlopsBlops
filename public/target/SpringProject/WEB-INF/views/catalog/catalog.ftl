@@ -21,7 +21,7 @@
     <#if limit < goodsCount>
         <div id="showMore" class="show-more-button" data-id="<#if id?? >${id}<#else >0</#if>" data-page="${page+1}"
              data-limit="${limit}">
-            Показать еще (<i id="limit">${limit}</i>) из <i id="goodsCount">${goodsCount-limit}</i>
+            Показать еще (<i id="limit"><#if limit<goodsCount-limit >${limit}<#else >${goodsCount-limit}</#if></i>) из <i id="goodsCount">${goodsCount-limit}</i>
         </div>
     </#if>
 </div>

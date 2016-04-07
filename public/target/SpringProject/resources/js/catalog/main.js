@@ -91,7 +91,7 @@ jQuery(document).ready(function($){
 			finalHeight = finalWidth * heightSelected/widthSelected,
 			finalTop = (windowHeight - finalHeight)/2,
 			quickViewWidth = ( windowWidth * .8 < maxQuickWidth ) ? windowWidth * .8 : maxQuickWidth ,
-			quickViewLeft = (windowWidth - quickViewWidth)/2;
+			quickViewLeft = (windowWidth - quickViewWidth+200)/2;
 
 		if( animationType == 'open') {
 			$cdQuickView=$('.cd-quick-view');

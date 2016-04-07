@@ -89,13 +89,20 @@ $(document).ready(function () {
 
     $(document).on('click', '#find',function(){
         var $this=$(this);
-        var color=$('.color').val();
+        var color='';
+        var type=$('.type:checked').val();
+        $('.color:checked').each(function() {
+            console.log(this.value);
+            color+=this.value +',';
+        });
+        
+        color = color.substring(0, color.length-1);
         $.ajax({
             type: 'GET',
             url: '/catalog/filters',
             data: {
                 color: color,
-                type: $('#type').val(),
+                type: type,
                 minPrice: $('#minPrice').val(),
                 maxPrice: $('#maxPrice').val()
             },
