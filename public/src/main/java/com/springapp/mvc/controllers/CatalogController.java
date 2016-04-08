@@ -45,7 +45,7 @@ public class CatalogController {
         model.addAttribute("goods", goods);
 
 
-
+        model.addAttribute("catalogId",id);
         model.addAttribute("page", page);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
         model.addAttribute("goodsCount", goods.size());
@@ -93,6 +93,26 @@ public class CatalogController {
     public String filters(Model model, @RequestParam(value = "color")String color, String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
                           Long limit){
         List<GoodInfo> goods=catalogService.getGoodsByParam(color,type,minPrice,maxPrice);
+
+
+        model.addAttribute("goods",goods);
+        model.addAttribute("page", page);
+        model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
+        model.addAttribute("goodsCount", goods.size());
+        return "catalog/ajaxGoods";
+    }
+
+    @IncludeCategoryInfo
+    @RequestMapping(value = "/sort",method = RequestMethod.POST)
+    public String sort(Model model, String sort, Long id,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                       Long limit){
+        List<GoodInfo> goods;
+        if (id==-1){
+             goods = catalogService.getAllGoodsOrderBy(sort);
+        }else {
+             goods = catalogService.getGoodsByCategoryIdOrderBy(sort, id);
+        }
+        model.addAttribute("catalogId",id);
 
         model.addAttribute("goods",goods);
         model.addAttribute("page", page);

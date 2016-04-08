@@ -37,6 +37,25 @@ $(document).ready(function () {
             $this.hide();
         })
     });
+    $(document).on('click','.sort',function(){
+        var $this=$(this);
+        var sort=$this.data('sort');
+        var id=$this.data('id');
+        $.ajax({
+            type: "POST",
+            url: "/catalog/sort",
+            data:{
+                sort: sort,
+                id: id
+            },
+            success: function(data){
+                $('.catalog').remove();
+                $('.main-content').append(data);
+            },
+            error: function(){
+                alert('ошибка');
+            }
+    });});
     $(document).on('click', '#showMore', function () {
         var $this = $(this);
         var page = $this.data('page'),

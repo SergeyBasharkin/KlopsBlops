@@ -67,6 +67,15 @@ public class UserInfo {
         return login;
     }
 
+    public UserInfo(String fio, String login, String hashPassword, String role, String key, Boolean enabled) {
+        this.fio = fio;
+        this.login = login;
+        this.hashPassword = hashPassword;
+        this.role = role;
+        this.key = key;
+        this.enabled = enabled;
+    }
+
     public void setLogin(String login) {
         this.login = login;
     }

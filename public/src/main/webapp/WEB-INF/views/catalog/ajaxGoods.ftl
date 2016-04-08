@@ -1,4 +1,5 @@
 <div class="rowb catalog">
+<#include "components/sort.ftl">
     <div id="goods">
         <ul id="goodList" class="medium-block-grid-3">
         <#include "components/goodItem.ftl">
