@@ -10,7 +10,7 @@ Primary style
 }
 
 *::after, *::before {
-  content: '';
+
 }
 
 body {

@@ -23,7 +23,7 @@
             <input title="blue" class="color" type="checkbox" name="color" value="Blue">Blue<br>
             <input title="white" class="color" type="checkbox" name="color" value="White">White<br>
             <p class="lead">Type</p>
-            <input title="mechanical" class="type" type="radio" name="type" value="mechanical">Mechanical
+            <input title="mechanical" class="type" type="radio" name="type" value="mechanical">Mechanical<br>
             <input title="battery" class="type" type="radio" name="type" value="battery">Battery
             <p class="lead">Price</p>
             <input title="minPrice" id="minPrice" type="text" size="20" value="100" name="minPrice">

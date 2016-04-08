@@ -4,6 +4,7 @@
     border-radius: 7px;
     margin-top: 40px;
     background: white;
+
 }
 .item-wrapper:hover .img-wrapper img {
     -webkit-filter: grayscale(0);
@@ -16,6 +17,8 @@
     margin-bottom: 20px;
     position: relative;
     overflow: hidden;
+
+
 }
 .img-wrapper .add-to-cart {
     -webkit-transition: all 0.2s ease;
