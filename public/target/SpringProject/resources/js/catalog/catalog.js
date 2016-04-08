@@ -109,12 +109,15 @@ $(document).ready(function () {
     $(document).on('click', '#find',function(){
         var $this=$(this);
         var color='';
-        var type=$('.type:checked').val();
+        var type='';
         $('.color:checked').each(function() {
             console.log(this.value);
             color+=this.value +',';
         });
-        
+        $('.type:checked').each(function(){
+            type+=this.value +',';
+        });
+        type=type.substring(0,type.length-1);
         color = color.substring(0, color.length-1);
         $.ajax({
             type: 'GET',

@@ -44,13 +44,8 @@ public class CartController {
         List<GoodInfo> goods = catalogService.getAllGoods();
         model.addAttribute("goods", goods);
         CartInfo cartInfo=cartService.getCart(request.getSession());
-        Map<String,Integer> cartFreemarker=new HashMap<String, Integer>();
-        for (Long aLong: cartInfo.getGoods().keySet()){
-            cartFreemarker.put(String.valueOf(aLong),cartInfo.getGoods().get(aLong));
-
-        }
-        request.setAttribute("fCart",cartFreemarker);
-        request.getUserPrincipal().getName();
+        request.setAttribute("fCart",cartInfo.getGoods());
+        //request.getUserPrincipal().getName();
         //SecurityContextHolder.getContext().getAuthentication().getPrincipal()
         return "cart/cartPage";
     }
@@ -73,8 +68,8 @@ public class CartController {
     @RequestMapping(value = "/change",method = RequestMethod.POST)
     public Integer changeGood(Long id, Integer count){
         cartService.addInCart(request.getSession(), id, count);
-        if (cartService.getCart(request.getSession()).getGoods().get(id)>=1) {
-            count = cartService.getCart(request.getSession()).getGoods().get(id);
+        if (cartService.getCart(request.getSession()).getGoods().get(String.valueOf(id))>=1) {
+            count = cartService.getCart(request.getSession()).getGoods().get(String.valueOf(id));
             return count;
         }else {
             cartService.removeInCart(request.getSession(),id);

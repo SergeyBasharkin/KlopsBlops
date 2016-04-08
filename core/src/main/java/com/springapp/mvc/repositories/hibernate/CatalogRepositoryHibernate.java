@@ -49,9 +49,10 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
         SQLQuery sqlQuery=curSession().createSQLQuery(
                 "SELECT DISTINCT(h_goods.id),h_goods.price,h_goods.name,h_goods.description,h_goods.imageurl,h_goods.type,h_goods.category_id " +
                         "FROM h_goods, h_colors,colors_goods " +
-                "WHERE (h_colors.name in (:color) AND h_goods.type=:types AND h_goods.price BETWEEN :minPrice AND :maxPrice )" +
+                "WHERE ((h_colors.name in (:color)) AND (h_goods.type in (:types)) AND h_goods.price BETWEEN :minPrice AND :maxPrice )" +
                 "AND h_colors.id=colors_goods.color_id AND h_goods.id=colors_goods.good_id").addEntity(GoodInfo.class);
-        Query query=sqlQuery.setParameterList("color", Arrays.asList(color.split(","))).setString("types",type).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+        List<String> colors=Arrays.asList(color.split(","));
+        Query query=sqlQuery.setParameterList("color", colors).setParameterList("types",Arrays.asList(type.split(","))).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
         List<GoodInfo> goodsByCat=query.list() ;
         return goodsByCat;
     }

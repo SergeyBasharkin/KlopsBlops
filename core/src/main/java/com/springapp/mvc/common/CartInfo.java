@@ -14,7 +14,7 @@ public class CartInfo {
     /**
      * key - id товара, value - кол-во товара
      */
-    private Map<Long, Integer> goods;
+    private Map<String, Integer> goods;
 
     private Long count;
 
@@ -36,17 +36,17 @@ public class CartInfo {
         this.total = total;
     }
 
-    public Map<Long, Integer> getGoods() {
+    public Map<String, Integer> getGoods() {
         return goods;
     }
 
-    public void setGoods(Map<Long, Integer> goods) {
+    public void setGoods(Map<String, Integer> goods) {
         this.goods = goods;
     }
 
     public boolean containsGoodId(Long goodId){
         if (goods == null || goodId == null)
             return false;
-        return goods.containsKey(goodId);
+        return goods.containsKey(String.valueOf(goodId));
     }
 }

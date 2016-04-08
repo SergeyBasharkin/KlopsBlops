@@ -30,16 +30,16 @@ public class CartService {
             cart = new CartInfo();
         }
         if (cart.getGoods() == null) {
-            Map<Long, Integer> map = new HashMap<Long, Integer>();
-            map.put(goodId, count);
+            Map<String, Integer> map = new HashMap<String, Integer>();
+            map.put(String.valueOf(goodId), count);
             cart.setGoods(map);
             cart.setCount((long)count);
             cart.setTotal(goodInfo.getPrice());
         } else {
-            if (cart.getGoods().containsKey(goodId)) {
-                cart.getGoods().put(goodId, cart.getGoods().get(goodId) + count);
+            if (cart.getGoods().containsKey(String.valueOf(goodId))) {
+                cart.getGoods().put(String.valueOf(goodId), cart.getGoods().get(String.valueOf(goodId)) + count);
             } else {
-                cart.getGoods().put(goodId, count);
+                cart.getGoods().put(String.valueOf(goodId), count);
             }
             updateCountAndTotal(goodInfo, Long.valueOf(count),cart);
         }
@@ -48,14 +48,14 @@ public class CartService {
     public void removeInCart(HttpSession session,Long goodId){
         CartInfo cart = (CartInfo) session.getAttribute(Constants.SESSION_CART);
         if (cart != null) {
-            cart.getGoods().remove(goodId);
+            cart.getGoods().remove(String.valueOf(goodId));
         }
     }
 
     public Long setCountGoods(CartInfo cart){
-        HashMap<Long,Integer> goods= (HashMap) cart.getGoods();
+        HashMap<String,Integer> goods= (HashMap<String,Integer>) cart.getGoods();
         Long count=0L;
-        for(Long i:goods.keySet()){
+        for(String i:goods.keySet()){
             count+=goods.get(i);
         }
         return count;
