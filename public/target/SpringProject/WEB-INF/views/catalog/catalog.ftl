@@ -3,8 +3,7 @@
 <@mainTemplate title="Каталог" styles=["css/foundation.css","css/test.css","css/cart.css","/css/reset.css","/css/style.css"] scripts=["js/catalog/catalog.js"]/>
 
 <#macro m_body>
-    <#include "components/filters.ftl">
-
+    <#include "../template/sideBar.ftl"/>
 <div class="rowb catalog">
 <#include "components/sort.ftl">
     <div id="goods">

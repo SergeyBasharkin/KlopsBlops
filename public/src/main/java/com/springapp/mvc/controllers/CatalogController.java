@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * Контроллер отвечающий за каталог
@@ -26,6 +30,8 @@ public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
+    @Autowired
+    private HttpServletRequest request;
     /**
      * Отображение каталога
      *
@@ -89,35 +95,20 @@ public class CatalogController {
     }
 
     @IncludeCategoryInfo
-    @RequestMapping( value = "/filters",method = RequestMethod.GET)
-    public String filters(Model model, @RequestParam(value = "color")String color, String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                          Long limit){
+    @RequestMapping( value = "/filters",method ={ RequestMethod.GET,RequestMethod.POST})
+    public String filters(Model model, @RequestParam(value = "color", defaultValue = "")String color, @RequestParam(defaultValue = "") String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                          Long limit,@RequestParam(value = "sort")String sort){
         List<GoodInfo> goods=catalogService.getGoodsByParam(color,type,minPrice,maxPrice);
 
-
+        goods=catalogService.sortBy(sort,goods);
         model.addAttribute("goods",goods);
         model.addAttribute("page", page);
+        model.addAttribute("sort",sort);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
         model.addAttribute("goodsCount", goods.size());
-        return "catalog/ajaxGoods";
+        if (request.getMethod().equals("POST")) {
+            return "catalog/ajaxGoods";
+        }else return "catalog/catalog";
     }
 
-    @IncludeCategoryInfo
-    @RequestMapping(value = "/sort",method = RequestMethod.POST)
-    public String sort(Model model, String sort, Long id,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                       Long limit){
-        List<GoodInfo> goods;
-        if (id==-1){
-             goods = catalogService.getAllGoodsOrderBy(sort);
-        }else {
-             goods = catalogService.getGoodsByCategoryIdOrderBy(sort, id);
-        }
-        model.addAttribute("catalogId",id);
-
-        model.addAttribute("goods",goods);
-        model.addAttribute("page", page);
-        model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
-        model.addAttribute("goodsCount", goods.size());
-        return "catalog/ajaxGoods";
-    }
 }

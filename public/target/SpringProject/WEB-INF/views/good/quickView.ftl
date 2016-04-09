@@ -12,5 +12,5 @@
             <li><a href="#0">Learn more</a></li>
         </ul> <!-- cd-item-action -->
     </div> <!-- cd-item-info -->
-    <a href="#0" class="cd-close">Close</a>
+    <a href="#0" class="cd-close fi-x-circle">Close</a>
 </div> <!-- cd-quick-view -->

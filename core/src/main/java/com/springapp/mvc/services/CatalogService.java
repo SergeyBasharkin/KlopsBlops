@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -48,30 +50,33 @@ public class CatalogService {
         return goods;
     }
 
-    public List<GoodInfo> getGoodsByCategoryIdOrderBy(String sort, Long id) {
 
-        if (sort.equals("pricedesc")) {
-            goods = catalogRepository.getGoodsByCatIdOrderByPriceDesc(id);
+    public List<GoodInfo> sortBy(String sort,List<GoodInfo> goods){
+        if (sort.equals("price")){
+            Collections.sort(goods, new Comparator<GoodInfo>() {
+                @Override
+                public int compare(GoodInfo o1, GoodInfo o2) {
+                    return o1.getPrice().compareTo(o2.getPrice());
+                }
+            });
+            return goods;
         }
-        if (sort.equals("price")) {
-            goods = catalogRepository.getGoodsByCatIdOrderByPrice(id);
+        if (sort.equals("name")){
+            Collections.sort(goods, new Comparator<GoodInfo>() {
+                @Override
+                public int compare(GoodInfo o1, GoodInfo o2) {
+                    return o1.getName().compareTo(o2.getName());
+                }
+            });
         }
-        if (sort.equals("name")) {
-            goods = catalogRepository.getGoodsByCatIdOrderByName(id);
+        if (sort.equals("pricedesc")){
+            Collections.sort(goods, new Comparator<GoodInfo>() {
+                @Override
+                public int compare(GoodInfo o1, GoodInfo o2) {
+                    return o2.getPrice().compareTo(o1.getPrice());
+                }
+            });
         }
         return goods;
     }
-    public List<GoodInfo> getAllGoodsOrderBy(String sort) {
-        if (sort.equals("pricedesc")) {
-            goods = catalogRepository.getAllGoodsOrderByPriceDesc();
-        }
-        if (sort.equals("price")) {
-            goods = catalogRepository.getAllGoodsOrderByPrice();
-        }
-        if (sort.equals("name")) {
-            goods = catalogRepository.getAllGoodsOrderByName();
-        }
-        return goods;
-    }
-
 }

@@ -17,7 +17,7 @@
 <body>
     <#include "header.ftl" />
 <div class="main-content">
-    <#include "sideBar.ftl"/>
+
     <a href="#" class="left_swap menu-icon"></a>
 
 
@@ -41,6 +41,7 @@
 <script src="../../../resources/js/foundation/foundation.tab.js"></script>
 <script src="../../../resources/js/foundation/foundation.dropdown.js"></script>
 <script src="../../../resources/js/foundation/foundation.topbar.js"></script>
+<script src="../../../resources/js/foundation/foundation.orbit.js"></script>
 <script src="../../../resources/js/catalog/sticky.js"></script>
 <script src="../../../resources/js/catalog/main.js"></script>
 

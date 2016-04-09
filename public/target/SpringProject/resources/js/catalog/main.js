@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 		maxQuickWidth = 900;
 
 	//open the quick view panel
-	$('.cd-trigger').on('click', function(event){
+	$('body').on('click','.cd-trigger', function(event){
 		var selectedImage = $(this).parent('.img-wrapper').parent('.cd-item').children($(this).data('id')),
 			slectedImageUrl = selectedImage.attr('src');
 
@@ -16,7 +16,19 @@ jQuery(document).ready(function($){
 		//you don't need to implement/use the updateQuickView if retrieving the quick view data with ajax
 		updateQuickView(slectedImageUrl);
 	});
-
+    //
+	//function good_details(i){
+	//	$this=$(i);
+	//	var selectedImage = $(this).parent('.img-wrapper').parent('.cd-item').children($(this).data('id')),
+	//		slectedImageUrl = selectedImage.attr('src');
+    //
+	//	$('body').addClass('overlay-layer');
+	//	animateQuickView(selectedImage, sliderFinalWidth, maxQuickWidth, 'open',$(this).data('id'));
+    //
+	//	//update the visible slider image in the quick view panel
+	//	//you don't need to implement/use the updateQuickView if retrieving the quick view data with ajax
+	//	updateQuickView(slectedImageUrl);
+	//}
 	//close the quick view panel
 	$('body').on('click', function(event){
 		if( $(event.target).is('.cd-close') || $(event.target).is('body.overlay-layer')) {
@@ -114,7 +126,7 @@ jQuery(document).ready(function($){
 			    'top': finalTop+ 'px',
 			    'left': finalLeft+'px',
 			    'width': finalWidth+'px',
-			}, 500, [ 400, 20 ], function(){
+			}, 400, [ 400, 20 ], function(){
 				//animate the quick view: animate its width to the final value
 				$cdQuickView.addClass('animate-width').velocity({
 					'left': quickViewLeft+'px',

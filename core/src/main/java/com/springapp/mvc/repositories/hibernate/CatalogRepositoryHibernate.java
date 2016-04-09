@@ -46,13 +46,26 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
 
     @Override
     public List<GoodInfo> getGoodsByParams(String color, String type, BigDecimal minPrice, BigDecimal maxPrice) {
+
+        String colorFind=color.equals("")?"":"(h_colors.name in (:color)) AND";
+        String typesFind=type.equals("")?"":"(h_goods.type in (:types)) AND";
         SQLQuery sqlQuery=curSession().createSQLQuery(
                 "SELECT DISTINCT(h_goods.id),h_goods.price,h_goods.name,h_goods.description,h_goods.imageurl,h_goods.type,h_goods.category_id " +
                         "FROM h_goods, h_colors,colors_goods " +
-                "WHERE ((h_colors.name in (:color)) AND (h_goods.type in (:types)) AND h_goods.price BETWEEN :minPrice AND :maxPrice )" +
+                "WHERE "+colorFind+""+typesFind+" h_goods.price BETWEEN :minPrice AND :maxPrice " +
                 "AND h_colors.id=colors_goods.color_id AND h_goods.id=colors_goods.good_id").addEntity(GoodInfo.class);
         List<String> colors=Arrays.asList(color.split(","));
-        Query query=sqlQuery.setParameterList("color", colors).setParameterList("types",Arrays.asList(type.split(","))).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+        List<String> types = Arrays.asList(type.split(","));
+        Query query;
+        if (colorFind.equals("")&&typesFind.equals("")){
+            query=sqlQuery.setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+        }else {
+            if (colorFind.equals("")){
+                query=sqlQuery.setParameterList("types",types).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+            }else if(typesFind.equals("")) {
+                query=sqlQuery.setParameterList("color", colors).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+            }else query=sqlQuery.setParameterList("color", colors).setParameterList("types",types).setBigDecimal("minPrice",minPrice).setBigDecimal("maxPrice",maxPrice);
+        }
         List<GoodInfo> goodsByCat=query.list() ;
         return goodsByCat;
     }

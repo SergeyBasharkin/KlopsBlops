@@ -203,6 +203,7 @@ select {
   width: 100%; }
 .catalog {
   position: relative;
+  align-content: center;
   min-height: 200%;
   min-width: 170px;
   max-width: 1200px;

@@ -37,25 +37,25 @@ $(document).ready(function () {
             $this.hide();
         })
     });
-    $(document).on('click','.sort',function(){
-        var $this=$(this);
-        var sort=$this.data('sort');
-        var id=$this.data('id');
-        $.ajax({
-            type: "POST",
-            url: "/catalog/sort",
-            data:{
-                sort: sort,
-                id: id
-            },
-            success: function(data){
-                $('.catalog').remove();
-                $('.main-content').append(data);
-            },
-            error: function(){
-                alert('ошибка');
-            }
-    });});
+    //$('body').on('click','.sort',function(){
+    //    var $this=$(this);
+    //    var sort=$this.data('sort');
+    //    var id=$this.data('id');
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/catalog/sort",
+    //        data:{
+    //            sort: sort,
+    //            id: id
+    //        },
+    //        success: function(data){
+    //            $('.catalog').remove();
+    //            $('.main-content').append(data);
+    //        },
+    //        error: function(){
+    //            alert('ошибка');
+    //        }
+    //});});
     $(document).on('click', '#showMore', function () {
         var $this = $(this);
         var page = $this.data('page'),
@@ -106,34 +106,45 @@ $(document).ready(function () {
         demoTimeout = setTimeout(function(){$this.trigger('stopRumble');}, 1500)
     };
 
-    $(document).on('click', '#find',function(){
+
+    $('body').on('click', '#find',function(){
         var $this=$(this);
         var color='';
         var type='';
+        var url='/catalog/filters?';
         $('.color:checked').each(function() {
+            url+='color=';
             console.log(this.value);
+            url+=this.value+'&';
             color+=this.value +',';
         });
         $('.type:checked').each(function(){
+            url+='type=';
+            url+=this.value+'&';
             type+=this.value +',';
         });
         type=type.substring(0,type.length-1);
         color = color.substring(0, color.length-1);
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/catalog/filters',
             data: {
                 color: color,
                 type: type,
+                sort: $('.sort').val(),
                 minPrice: $('#minPrice').val(),
                 maxPrice: $('#maxPrice').val()
             },
             success: function(data){
                 $('.catalog').remove();
                 $('.main-content').append(data);
+                url+='minPrice='+$('#minPrice').val()+'&';
+                url+='maxPrice='+$('#maxPrice').val()+'&';
+                url+='sort='+$('.sort').val();
+                history.pushState('','',url)
             },
             error: function(){
-                alert('ошибка');
+                alert('ошибка фильтра');
             }
         })
     });
@@ -157,20 +168,6 @@ $(document).ready(function () {
             },
             error: function () {    // На сервере произошла ошибка
                 alert('Приносим извинения.<br/>На сервере произошла ошибка');
-            }
-        });
-    });
-    $(document).on('click', '.js_goodDetail', function () {
-        event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/good/details/' + $(this).data('id'),
-            //dataType: 'json',
-            success: function (data, status) {  // успешное завершение работы
-                alert(JSON.stringify(data, "", 4));
-            },
-            error: function (error) {    // На сервере произошла ошибка
-                alert('Приносим извинения.<br/>На сервере произошла ошибка<br/>' + error);
             }
         });
     });

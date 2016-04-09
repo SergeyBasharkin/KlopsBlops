@@ -13,7 +13,8 @@
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate title="Каталог" styles=["css/foundation.css","css/cart.css","css/test.css"] scripts=["js/catalog/catalog.js","js/catalog/jquery.jrumble.1.3.js"]/>
 
-<#macro m_body>}
+<#macro m_body>
+    <#include "../template/sideBar.ftl"/>
 <div class="large-8 columns small-centered">
     <div class="rowb ">
         <div id="goodList">
