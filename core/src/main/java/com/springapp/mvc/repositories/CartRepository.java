@@ -9,8 +9,8 @@ import java.util.List;
  * Created by Admin on 11.04.2016.
  */
 public interface CartRepository {
-    void addToCart(Long userId,Long good_id,Integer count);
+    void addToCart(CartInfo cartInfo);
     List<GoodInfo> getGoods(Long userId);
     Integer getCount(Long userId);
-    CartInfo getCart(Long userId, Long goodId);
+    CartInfo getCart(Long id);
 }

@@ -71,7 +71,7 @@ public class CartController {
         }else {
             MyUserDetail myUserDetail= (MyUserDetail) auth.getPrincipal();
             UserInfo userInfo=myUserDetail.getUserInfo();
-            cartService.addToCart(userInfo.getId(),goodId,1,request.getSession());
+            cartService.addToCart(userInfo,goodService.getGood(goodId),1,goodService.getGood(goodId).getPrice());
         }
         return "ok";
     }

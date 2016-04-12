@@ -25,18 +25,24 @@ public class CartRepositoryHibernate implements CartRepository {
     }
 
     @Override
-    public void addToCart(Long userId,Long good_id,Integer count) {
-        SQLQuery sqlQuery= curSession().createSQLQuery("INSERT INTO h_cart(user_id, good_id, count) VALUES(:userId,:goodId,:mycount) ");
-        Query query=sqlQuery.setLong("userId",userId).setLong("goodId",good_id).setLong("mycount",count);
+    public void addToCart(CartInfo cartInfo) {
+        String count="count";
+        SQLQuery sqlQuery=curSession().createSQLQuery("INSERT INTO h_cart(user_id, good_id,"+count+", total)" +
+                " VALUES(:user_id,:good_id,:mycount,:total)").addEntity(CartInfo.class);
+        Query query=sqlQuery.setLong("user_id",cartInfo.getUser().getId())
+                .setLong("good_id",cartInfo.getGoods().getId())
+                .setInteger("mycount",cartInfo.getCount())
+                .setBigDecimal("total",cartInfo.getTotal());
         query.executeUpdate();
     }
 
     @Override
     public List<GoodInfo> getGoods(Long userId) {
         SQLQuery sqlQuery=curSession().createSQLQuery("SELECT h_goods.id,h_goods.type,h_goods.name,h_goods.category_id,h_goods.description,h_goods.imageurl,h_goods.price" +
-                " FROM h_cart,h_goods WHERE user_id=:userId AND h_goods.id=h_cart.good_id");
+                " FROM h_cart,h_goods WHERE user_id=:userId AND h_goods.id=h_cart.good_id").addEntity(GoodInfo.class);
         sqlQuery.setLong("userId",userId);
-        return sqlQuery.list();
+        List<GoodInfo> goods=sqlQuery.list();
+        return goods;
     }
 
     @Override
@@ -45,10 +51,7 @@ public class CartRepositoryHibernate implements CartRepository {
     }
 
     @Override
-    public CartInfo getCart(Long userId, Long goodId) {
-        SQLQuery sqlQuery=curSession().createSQLQuery("SELECT * FROM h_cart WHERE user_id=:userId AND good_id=:goodId");
-        Query query=sqlQuery.setLong("userId",userId).setLong("goodId",goodId);
-//        CartInfo cartInfo=new CartInfo(result.get(0).)
-        return  null;
+    public CartInfo getCart(Long id) {
+       return (CartInfo) curSession().get(CartInfo.class,id);
     }
 }

@@ -7,39 +7,52 @@ import java.util.List;
 /**
  * Created by Admin on 11.04.2016.
  */
-
+@Entity
+@Table(name = "h_cart")
 public class CartInfo {
+    @Id
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "good_id")
+    private GoodInfo goods;
 
-    private List<GoodInfo> goods;
-
-    private List<UserInfo> user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserInfo user;
 
     private Integer count;
 
     private BigDecimal total;
 
-    public List<GoodInfo> getGoods() {
+    public CartInfo(UserInfo user,GoodInfo goods,Long id, Integer count, BigDecimal total) {
+        this.id=id;
+        this.goods = goods;
+        this.user = user;
+        this.count = count;
+        this.total=total;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public GoodInfo getGoods() {
         return goods;
     }
 
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public void setGoods(List<GoodInfo> goods) {
+    public void setGoods(GoodInfo goods) {
         this.goods = goods;
     }
 
-    public List<UserInfo> getUser() {
+    public UserInfo getUser() {
         return user;
     }
 
-    public void setUser(List<UserInfo> user) {
+    public void setUser(UserInfo user) {
         this.user = user;
     }
 
@@ -49,6 +62,14 @@ public class CartInfo {
 
     public void setCount(Integer count) {
         this.count = count;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public CartInfo() {
