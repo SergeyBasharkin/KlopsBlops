@@ -8,13 +8,14 @@
        http://www.springframework.org/schema/security/spring-security.xsd">
 
     <!-- Static resources such as CSS and JS files are ignored by Spring Security -->
-    <http pattern="/resources/**" security="none" />
+    <http pattern="/resources/stylesheets/css" security="none" />
 
     <http auto-config="true" use-expressions="true">
         <!-- Настраиваем процесс авторизации -->
         <form-login login-processing-url="/j_spring_security_check"
-                    login-page="/login"
-                    authentication-failure-url="/login?error=true"/>
+                    authentication-success-handler-ref="myAuthSuccessHandler"
+                    authentication-failure-handler-ref="myAuthFailureHandler"/>
+
         <!-- Определяем адрес для разлогина, страницу перехода при успешном разлогине
              и указываем на необходимость очистить сессию пользователя -->
         <logout logout-url="/logout"
@@ -40,5 +41,6 @@
 
     <!-- сервис авторизации -->
     <beans:bean id="userDetailsService" class="com.springapp.mvc.security.MyUserDetailService"/>
-
+    <beans:bean id="myAuthSuccessHandler" class="com.springapp.mvc.security.MyAuthSuccessHandler"/>
+    <beans:bean id="myAuthFailureHandler" class="com.springapp.mvc.security.MyAuthFailureHandler"/>
 </beans:beans>

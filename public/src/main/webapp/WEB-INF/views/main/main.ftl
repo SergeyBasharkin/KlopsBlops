@@ -1,5 +1,5 @@
 <#include "../template/mainTemplate.ftl">
-<@mainTemplate title="Главная" styles=["css/foundation.css","css/cart.css"] />
+<@mainTemplate title="Главная" styles=["css/foundation.css","css/test.css","css/cart.css","/css/reset.css","/css/style.css"] scripts=["js/catalog/catalog.js"] />
 <#macro m_body>
 
 <div class="row">

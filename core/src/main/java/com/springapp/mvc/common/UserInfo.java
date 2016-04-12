@@ -1,6 +1,7 @@
 package com.springapp.mvc.common;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Gataullin Kamil
@@ -14,14 +15,25 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    @ManyToMany                                 // определяет отношение многие ко многим
+            (cascade = CascadeType.REFRESH,
+                    fetch = FetchType.LAZY)     // подгрузка объектов только при обращении к ним
+    @JoinTable(name = "h_Cart",           // вспомогательная связывающая таблица для отношений многие ко многим
+            joinColumns = @JoinColumn(name = "USER_ID"),        // название колонки для связи с текущей таблицей Orders
+            inverseJoinColumns = @JoinColumn(name = "GOOD_ID"))
+    private List<GoodInfo> goods;
     /**
      * ФИО пользователя
      */
     private String fio;
 
+
+
     /**
      * Логин пользователя для входа на сайт, он же email
      */
+
     private String login;
 
     /**
@@ -46,7 +58,13 @@ public class UserInfo {
 
     public UserInfo() {
     }
+    public List<GoodInfo> getGoods() {
+        return goods;
+    }
 
+    public void setGoods(List<GoodInfo> goods) {
+        this.goods = goods;
+    }
     public Long getId() {
         return id;
     }

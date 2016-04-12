@@ -9,7 +9,7 @@
                 <ul>
                     <#list category.children as child>
                         <#if child.id!=category.id>
-                            <li>${child.name}</li>
+                            <li><a style="color: #028dba" href="/catalog/${child.id}"> ${child.name}</a></li>
                         </#if>
                     </#list>
                 </ul>

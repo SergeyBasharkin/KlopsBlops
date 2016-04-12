@@ -18,7 +18,7 @@
         <ul class="right">
         <#-- Если пользователь еще не авторизован, предлагаем ему авторизоваться, либо зарегистрироваться на сайте -->
         <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
-           <li> <a class="login success button small" href="/login">Login</a></li>
+           <li> <a class="login success button small" href="#">Login</a></li>
             <li><a class="login button small" href="/reg">Registration</a></li>
         </@sec.authorize>
         <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->

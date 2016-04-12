@@ -19,8 +19,8 @@
     <div class="rowb ">
         <div id="goodList">
             <#include "components/cartItem.ftl">
-            <#if (fCart)??>
-            <#list fCart?keys as goodId>
+            <#if (cartGoods)??>
+            <#list cartGoods?keys as goodId>
                 <@cartItem goodId=goodId />
 
             </#list>

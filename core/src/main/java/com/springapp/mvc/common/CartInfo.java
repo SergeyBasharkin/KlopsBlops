@@ -1,32 +1,27 @@
 package com.springapp.mvc.common;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Map;
+import java.util.List;
 
 /**
- * Содержимое корзины
- *
- * Gataullin Kamil
- * 02.03.2016 0:23
+ * Created by Admin on 11.04.2016.
  */
+
 public class CartInfo {
 
-    /**
-     * key - id товара, value - кол-во товара
-     */
-    private Map<String, Integer> goods;
+    private List<GoodInfo> goods;
 
-    private Long count;
+    private List<UserInfo> user;
+
+    private Integer count;
 
     private BigDecimal total;
 
-    public Long getCount() {
-        return count;
+    public List<GoodInfo> getGoods() {
+        return goods;
     }
 
-    public void setCount(Long count) {
-        this.count = count;
-    }
 
     public BigDecimal getTotal() {
         return total;
@@ -36,17 +31,29 @@ public class CartInfo {
         this.total = total;
     }
 
-    public Map<String, Integer> getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Map<String, Integer> goods) {
+    public void setGoods(List<GoodInfo> goods) {
         this.goods = goods;
     }
 
-    public boolean containsGoodId(Long goodId){
-        if (goods == null || goodId == null)
-            return false;
-        return goods.containsKey(String.valueOf(goodId));
+    public List<UserInfo> getUser() {
+        return user;
     }
+
+    public void setUser(List<UserInfo> user) {
+        this.user = user;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public CartInfo() {
+
+    }
+
+
 }

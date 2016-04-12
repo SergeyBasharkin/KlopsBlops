@@ -18,12 +18,12 @@ import java.util.concurrent.Callable;
 
 /**
  * Контроллер отвечающий за каталог
- *
+ * <p>
  * Gataullin Kamil
  * 22.02.2016 22:46
  */
 @Controller
-@RequestMapping(value = "/catalog" ,method = {RequestMethod.POST,RequestMethod.GET})
+@RequestMapping(value = "/catalog", method = {RequestMethod.POST, RequestMethod.GET})
 public class CatalogController {
 
     private static final Integer TEST_LIMIT = 6;
@@ -32,6 +32,7 @@ public class CatalogController {
 
     @Autowired
     private HttpServletRequest request;
+
     /**
      * Отображение каталога
      *
@@ -51,31 +52,42 @@ public class CatalogController {
         model.addAttribute("goods", goods);
 
 
-        model.addAttribute("catalogId",id);
+        model.addAttribute("catalogId", id);
         model.addAttribute("page", page);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
         model.addAttribute("goodsCount", goods.size());
         return "catalog/catalog";
     }
+
     @RequestMapping(value = "/showMore", method = RequestMethod.POST)
     public String showMoreGoods(Long id, Integer page, Integer limit, Model model) {
-        // Эта страшная проверка с page и limit только для теста, так как у нас пока нет реальных данных
-        List<GoodInfo> goods;
-        if (id==0){
-            goods=catalogService.getAllGoods();
-        }else {
-            goods=catalogService.getGoodsByCategoryId(id);
-        }
-        model.addAttribute("goodsCount", goods.size());
+        List<GoodInfo> goods = (List<GoodInfo>) request.getSession().getAttribute("goodsForShowMore");
+        if (goods != null) {
+            if (goods.size() > page * limit) {
+                goods = goods.subList((page - 1) * limit, (page - 1) * limit + limit);
+            } else {
+                goods = goods.subList((page - 1) * limit, goods.size());
+            }
+            model.addAttribute("goodsCount", goods.size());
+            model.addAttribute("goods", goods);
+        } else {
+            if (id == 0) {
+                goods = catalogService.getAllGoods();
+            } else {
+                goods = catalogService.getGoodsByCategoryId(id);
+            }
+            model.addAttribute("goodsCount", goods.size());
 
-        if (goods.size()>page*limit){
-            goods=goods.subList((page-1)*limit,(page-1)*limit+limit);
-        }else {
-            goods=goods.subList((page-1)*limit,goods.size());
+            if (goods.size() > page * limit) {
+                goods = goods.subList((page - 1) * limit, (page - 1) * limit + limit);
+            } else {
+                goods = goods.subList((page - 1) * limit, goods.size());
+            }
+            model.addAttribute("goods", goods);
         }
-        model.addAttribute("goods",goods);
         return "catalog/ajaxGoodsAdd";
     }
+
     /**
      * Отображение главной страницы каталога
      */
@@ -95,20 +107,21 @@ public class CatalogController {
     }
 
     @IncludeCategoryInfo
-    @RequestMapping( value = "/filters",method ={ RequestMethod.GET,RequestMethod.POST})
-    public String filters(Model model, @RequestParam(value = "color", defaultValue = "")String color, @RequestParam(defaultValue = "") String type, BigDecimal minPrice, BigDecimal maxPrice,@RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
-                          Long limit,@RequestParam(value = "sort")String sort){
-        List<GoodInfo> goods=catalogService.getGoodsByParam(color,type,minPrice,maxPrice);
+    @RequestMapping(value = "/filters", method = {RequestMethod.GET, RequestMethod.POST})
+    public String filters(Model model, @RequestParam(value = "color", defaultValue = "") String color, @RequestParam(defaultValue = "") String type, BigDecimal minPrice, BigDecimal maxPrice, @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                          Long limit, @RequestParam(value = "sort") String sort) {
+        List<GoodInfo> goods = catalogService.getGoodsByParam(color, type, minPrice, maxPrice);
+        request.getSession().setAttribute("goodsForShowMore", goods);
 
-        goods=catalogService.sortBy(sort,goods);
-        model.addAttribute("goods",goods);
+        goods = catalogService.sortBy(sort, goods);
+        model.addAttribute("goods", goods);
         model.addAttribute("page", page);
-        model.addAttribute("sort",sort);
+        model.addAttribute("sort", sort);
         model.addAttribute("limit", limit == null ? TEST_LIMIT : limit);
         model.addAttribute("goodsCount", goods.size());
         if (request.getMethod().equals("POST")) {
             return "catalog/ajaxGoods";
-        }else return "catalog/catalog";
+        } else return "catalog/catalog";
     }
 
 }

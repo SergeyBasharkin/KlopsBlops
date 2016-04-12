@@ -16,16 +16,17 @@
 </head>
 <body>
     <#include "header.ftl" />
+
 <div class="main-content">
 
     <a href="#" class="left_swap menu-icon"></a>
 
+    <#include "../login/login.ftl">
 
     <@m_body />
 
 </div>
     <#include "footer.ftl" />
-
 
 
 <script src="../../../resources/js/vendor/jquery.js"></script>

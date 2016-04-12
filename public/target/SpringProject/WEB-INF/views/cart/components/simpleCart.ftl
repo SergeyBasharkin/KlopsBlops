@@ -9,7 +9,7 @@
            <span>$</span><span class="jsPrice"><#if Session.cart??>${Session.cart.total!0}<#else >0</#if></span>
         </div>
         <div class="rowb checkout">
-            <span><a href="#">View Cart &gt;</a></span>
+            <span><a href="/cart">View Cart &gt;</a></span>
             <span class="checkout-button">Checkout</span>
         </div>
     </div>

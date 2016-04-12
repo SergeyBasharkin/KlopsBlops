@@ -221,6 +221,19 @@ select {
     padding-left: 50px;
   }
 }
+.log-in-form {
+  position: absolute;
+  border: 1px solid #cacaca;
+  padding: 1rem;
+  border-radius: 3px;
+  background-color: white;
+
+}
+.log {
+  position: absolute;
+  left: 20%;
+  z-index: 1;
+}
 .row {
   margin: 0 auto;
   max-width: 62.5rem;

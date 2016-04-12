@@ -21,7 +21,6 @@ public class LoginController {
     @IncludeCategoryInfo
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String renderLoginPage(Boolean error) {
-        request.setAttribute("error", error);
         return "login/login";
     }
 }
