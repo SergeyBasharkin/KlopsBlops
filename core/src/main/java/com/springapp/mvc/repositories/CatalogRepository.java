@@ -12,10 +12,4 @@ public interface CatalogRepository {
     List<GoodInfo> getGoodsByCatId(Long catId);
     List<GoodInfo> getAllGoods();
     List<GoodInfo> getGoodsByParams(String color,String type,BigDecimal minPrice, BigDecimal maxPrice);
-    List<GoodInfo> getGoodsByCatIdOrderByPriceDesc(Long id);
-    List<GoodInfo> getGoodsByCatIdOrderByPrice(Long id);
-    List<GoodInfo> getGoodsByCatIdOrderByName(Long id);
-    List<GoodInfo> getAllGoodsOrderByPriceDesc();
-    List<GoodInfo> getAllGoodsOrderByPrice();
-    List<GoodInfo> getAllGoodsOrderByName();
 }

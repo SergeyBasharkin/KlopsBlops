@@ -49,16 +49,13 @@ public class RegistrationController {
     @RequestMapping(method = RequestMethod.POST)
     public String registrationForm(
             @Valid @ModelAttribute(ATTR_REGISTRATION_FORM) RegistrationFormBean registrationFormBean,
-//            RegistrationFormBean registrationFormBean, // TODO хотя работает и без этой аннотации, обычно её используют для переименования аргумента
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registration/registrationPage";
         }
-        // здесь должна происходить регистрация пользователя
         String hashPassword= DigestUtils.md5Hex(registrationFormBean.getConfirmPassword());
-        UserInfo userInfo=new UserInfo(registrationFormBean.getLastName(),registrationFormBean.getEmail(),hashPassword,"ROLE_USER","1234",true);
+        UserInfo userInfo=new UserInfo(registrationFormBean.getLastName(),registrationFormBean.getEmail(),hashPassword,"ROLE_USER",registrationFormBean.getPhone(),true);
         userService.add(userInfo);
-        System.out.println(registrationFormBean);
-        return "registration/result";
+        return "redirect:/";
     }
 }

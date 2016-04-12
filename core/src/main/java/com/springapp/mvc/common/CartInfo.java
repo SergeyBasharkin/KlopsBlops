@@ -7,21 +7,40 @@ import java.util.List;
 /**
  * Created by Admin on 11.04.2016.
  */
+/*
+    Таблица корзины для авторизованного пользователя
+ */
 @Entity
 @Table(name = "h_cart")
 public class CartInfo {
+    /*
+    id корзины
+     */
     @Id
     private Long id;
+
+    /*
+    Товар в козине
+     */
     @ManyToOne
     @JoinColumn(name = "good_id")
     private GoodInfo goods;
 
+    /*
+    Пользователь
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserInfo user;
 
-    private Integer count;
+    /*
+    Колличество товара в корзине
+     */
 
+    private Integer count;
+    /*
+    Общая цена за товар
+     */
     private BigDecimal total;
 
     public CartInfo(UserInfo user,GoodInfo goods,Long id, Integer count, BigDecimal total) {

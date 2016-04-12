@@ -19,8 +19,7 @@ import java.util.concurrent.Callable;
 /**
  * Контроллер отвечающий за каталог
  * <p>
- * Gataullin Kamil
- * 22.02.2016 22:46
+ *
  */
 @Controller
 @RequestMapping(value = "/catalog", method = {RequestMethod.POST, RequestMethod.GET})

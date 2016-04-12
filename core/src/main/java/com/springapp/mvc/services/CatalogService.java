@@ -16,9 +16,7 @@ import java.util.List;
 
 /**
  * Сервис для работы с категориями товаров
- * <p>
- * Gataullin Kamil
- * 22.02.2016 23:23
+ *
  */
 @Service
 public class CatalogService {

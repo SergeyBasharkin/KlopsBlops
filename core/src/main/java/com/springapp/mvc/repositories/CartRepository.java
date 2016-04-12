@@ -2,6 +2,7 @@ package com.springapp.mvc.repositories;
 
 import com.springapp.mvc.common.CartInfo;
 import com.springapp.mvc.common.GoodInfo;
+import com.springapp.mvc.common.UserInfo;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ import java.util.List;
  */
 public interface CartRepository {
     void addToCart(CartInfo cartInfo);
-    List<GoodInfo> getGoods(Long userId);
-    Integer getCount(Long userId);
-    CartInfo getCart(Long id);
+    List<CartInfo> getUserCarts(UserInfo user);
+    CartInfo getUserCartsByGood(GoodInfo good,UserInfo user);
+    void updateCart(CartInfo cartInfo);
+
+    void deleteCart(CartInfo cart);
 }

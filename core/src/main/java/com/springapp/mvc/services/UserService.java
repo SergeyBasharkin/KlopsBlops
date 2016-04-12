@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Gataullin Kamil
- * 28.03.2016 21:26
+ *
  */
 @Service
 public class UserService {

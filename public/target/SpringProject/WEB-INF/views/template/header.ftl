@@ -23,7 +23,7 @@
         </@sec.authorize>
         <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->
         <@sec.authorize access="isAuthenticated()">
-            <li><a class="login" href="/cabinet">
+            <li><a class="login" href="/cart">
             <#-- principal - это фактически экземпляр объекта MyUserDetail -->
                         <@sec.authentication property="principal.username" />
                         <#--<@sec.authentication property="principal.userInfo.fio" />-->

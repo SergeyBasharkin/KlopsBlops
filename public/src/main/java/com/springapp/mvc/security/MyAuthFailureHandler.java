@@ -16,9 +16,12 @@ public class MyAuthFailureHandler implements AuthenticationFailureHandler {
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
         String url = httpServletRequest.getHeader("Referer");
         //httpServletRequest.setAttribute("auth",false);
-        if (url.contains("?auth=true")){
+
+        if (url.contains("auth=false")){
+            url=url.replace("?auth=false","");
+        }else if (url.contains("auth=true")){
             url=url.replace("?auth=true","");
         }
-        httpServletResponse.sendRedirect(url.contains("?auth=false")?url:url+"?auth=false");
+        httpServletResponse.sendRedirect(url);
     }
 }

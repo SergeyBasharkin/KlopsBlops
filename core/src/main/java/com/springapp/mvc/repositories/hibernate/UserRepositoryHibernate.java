@@ -7,10 +7,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Gataullin Kamil
- * 28.03.2016 21:23
+ *
  */
 @Repository
 public class UserRepositoryHibernate implements UserRepository {
@@ -22,6 +22,7 @@ public class UserRepositoryHibernate implements UserRepository {
         return sessionFactory.getCurrentSession();
     }
 
+    @Transactional
     @Override
     public void add(UserInfo userInfo) {
         curSession().save(userInfo);

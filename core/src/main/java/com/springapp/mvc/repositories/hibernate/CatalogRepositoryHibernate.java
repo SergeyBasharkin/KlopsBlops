@@ -30,6 +30,11 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
         return sessionFactory.getCurrentSession();
     }
 
+    /**
+     * Берем все товары по id категории
+     * @param catId
+     * @return
+     */
     @Override
     public List<GoodInfo> getGoodsByCatId(Long catId) {
         SQLQuery sqlQuery = curSession().createSQLQuery("SELECT * FROM h_goods WHERE category_id= :cat_id ").addEntity(GoodInfo.class);
@@ -44,6 +49,14 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
         return goods;
     }
 
+    /**
+     * Выбираем товары по параметрам
+     * @param color
+     * @param type
+     * @param minPrice
+     * @param maxPrice
+     * @return
+     */
     @Override
     public List<GoodInfo> getGoodsByParams(String color, String type, BigDecimal minPrice, BigDecimal maxPrice) {
 
@@ -70,61 +83,5 @@ public class CatalogRepositoryHibernate implements CatalogRepository {
         return goodsByCat;
     }
 
-    @Override
-    public List<GoodInfo> getGoodsByCatIdOrderByPriceDesc(Long id) {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        "WHERE h_goods.category_id= :id ORDER BY h_goods.price DESC").addEntity(GoodInfo.class);
-        Query query=sqlQuery.setParameter("id",id);
-        List<GoodInfo> goods=query.list();
-        return goods;
-    }
 
-    @Override
-    public List<GoodInfo> getGoodsByCatIdOrderByPrice(Long id) {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        "WHERE h_goods.category_id= :id ORDER BY h_goods.price ASC ").addEntity(GoodInfo.class);
-        Query query=sqlQuery.setParameter("id",id);
-        List<GoodInfo> goods=query.list();
-        return goods;
-    }
-
-    @Override
-    public List<GoodInfo> getGoodsByCatIdOrderByName(Long id) {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        "WHERE h_goods.category_id= :id ORDER BY h_goods.name ASC ").addEntity(GoodInfo.class);
-        Query query=sqlQuery.setParameter("id",id);
-        List<GoodInfo> goods=query.list();
-        return goods;
-    }
-
-    @Override
-    public List<GoodInfo> getAllGoodsOrderByPriceDesc() {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        "ORDER BY h_goods.price DESC ").addEntity(GoodInfo.class);
-        List<GoodInfo> goods=sqlQuery.list();
-
-        return goods;
-    }
-
-    @Override
-    public List<GoodInfo> getAllGoodsOrderByPrice() {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        " ORDER BY h_goods.price ASC ").addEntity(GoodInfo.class);
-        List<GoodInfo> goods=sqlQuery.list();
-        return goods;
-    }
-
-    @Override
-    public List<GoodInfo> getAllGoodsOrderByName() {
-        SQLQuery sqlQuery=curSession().createSQLQuery(
-                "SELECT * FROM h_goods " +
-                        "ORDER BY h_goods.name ASC ").addEntity(GoodInfo.class);
-        List<GoodInfo> goods=sqlQuery.list();
-        return goods;
-    }
 }

@@ -16,11 +16,11 @@ public class Colors {
 
     private String name;
 
-    @ManyToMany                                 // определяет отношение многие ко многим
+    @ManyToMany
             (cascade = CascadeType.REFRESH,
-                    fetch = FetchType.LAZY)     // подгрузка объектов только при обращении к ним
-    @JoinTable(name = "COLORS_GOODS",           // вспомогательная связывающая таблица для отношений многие ко многим
-            joinColumns = @JoinColumn(name = "COLOR_ID"),        // название колонки для связи с текущей таблицей Orders
+                    fetch = FetchType.LAZY)
+    @JoinTable(name = "COLORS_GOODS",
+            joinColumns = @JoinColumn(name = "COLOR_ID"),
             inverseJoinColumns = @JoinColumn(name = "GOOD_ID"))
     private List<GoodInfo> goods;
 

@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * Содержимое корзины
  *
- * Gataullin Kamil
- * 02.03.2016 0:23
  */
 public class SessionCartInfo {
 
@@ -16,8 +14,14 @@ public class SessionCartInfo {
      */
     private Map<String, Integer> goods;
 
+    /**
+     * Общее колличество товара
+     */
     private Long count;
 
+    /**
+     * Общая цена товаров
+     */
     private BigDecimal total;
 
     public Long getCount() {

@@ -5,8 +5,7 @@ import com.springapp.mvc.common.CategoryInfo;
 import java.util.List;
 
 /**
- * Gataullin Kamil
- * 08.03.2016 20:34
+ *
  */
 public interface CategoryRepository {
 

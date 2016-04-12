@@ -6,8 +6,7 @@ import java.math.BigDecimal;
 /**
  * Основная информация о товаре
  *
- * Gataullin Kamil
- * 22.02.2016 22:54
+ *
  */
 @Entity
 @Table(name = "h_goods")
@@ -25,9 +24,14 @@ public class GoodInfo {
      */
     private String name;
 
+    /**
+     * Описание товара
+     */
     private String description;
 
-
+    /**
+     * Тип товара mechanical,battery
+     */
     private String type;
 
     /**

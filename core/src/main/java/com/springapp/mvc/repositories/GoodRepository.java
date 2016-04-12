@@ -3,8 +3,7 @@ package com.springapp.mvc.repositories;
 import com.springapp.mvc.common.GoodInfo;
 
 /**
- * Gataullin Kamil
- * 07.03.2016 0:17
+ *
  */
 public interface GoodRepository {
 

@@ -7,10 +7,6 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- * Gataullin Kamil
- * 13.03.2016 0:10
- */
 public class RegistrationFormBean {
 
     @NotEmpty(message = "Поле обязательно для заполнения")
@@ -35,6 +31,11 @@ public class RegistrationFormBean {
 
     @Size(min=6, max=20, message="Пароль должен быть от 6 до 20 символов")
     private String confirmPassword;
+
+    @AssertTrue(message="passVerify field should be equal than pass field")
+    private boolean isValid() {
+        return this.password.equals(this.confirmPassword);
+    }
 
     public RegistrationFormBean() {
     }

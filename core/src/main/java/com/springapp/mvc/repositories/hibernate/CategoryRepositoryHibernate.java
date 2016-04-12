@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Gataullin Kamil
- * 16.03.2016 22:21
+ *
  */
 @Repository
 public class CategoryRepositoryHibernate implements CategoryRepository {

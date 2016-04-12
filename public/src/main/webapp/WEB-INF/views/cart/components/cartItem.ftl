@@ -5,7 +5,6 @@
             <div class="img-wrapper">
                 <img class="watch" src="${cartGoods[goodId].imageUrl}">
             </div>
-            <#assign colors = ["red", "green", "blue"]>
             <h3>${cartGoods[goodId].name}</h3>
              <a class="js_change fi-minus minus" data-count="-1" data-id="${goodId}" data-price="${cartGoods[goodId].price}"></a>
             (кол-во:<span id="count_${goodId}">${fCart[goodId]}</span>)

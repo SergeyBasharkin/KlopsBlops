@@ -16,8 +16,7 @@ import java.util.Map;
 /**
  * Контроллер для тестовых запросов
  *
- * Gataullin Kamil
- * 25.02.2016 22:25
+ *
  */
 @Controller
 @RequestMapping("/test")

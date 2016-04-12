@@ -2,11 +2,11 @@
 <#include "../template/mainTemplate.ftl">
 <@mainTemplate title="Регистрация" styles=["css/foundation.css","css/test.css","css/cart.css","/css/reset.css","/css/style.css"] scripts=["js/catalog/catalog.js"] />
 <#macro m_body>
-<div class="account-in row column">
+<div class="row large-centered small-9 columns " style="background-color: white" >
     <div class="container">
         <@form.form commandName="regForm" action="/reg" acceptCharset="UTF-8" method="post">
             <div class="register-top-grid">
-                <h2>PERSONAL INFORMATION</h2>
+                <h2 align="center">PERSONAL INFORMATION</h2>
                 <#--<@form.errors path="*" cssStyle="color: red;" />-->
                 <div>
                     <span>First Name<label>*</label></span>
@@ -38,7 +38,7 @@
                 </i>
             </div>
             <div class="register-bottom-grid">
-                <h2>LOGIN INFORMATION</h2>
+                <h2 align="center">LOGIN INFORMATION</h2>
                 <div>
                     <span>Password<label>*</label></span>
                     <@form.password path="password" />
@@ -53,8 +53,8 @@
             </div>
         <div class="clearfix"> </div>
         <div class="register-but">
-            <input type="submit" value="submit" class="btn btn-default">
-            <div class="clearfix"> </div>
+            <input type="submit" value="submit" class="button">
+            <div class="alert "> </div>
         </div>
         </@form.form>
     </div>
