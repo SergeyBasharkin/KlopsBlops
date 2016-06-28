@@ -34,7 +34,12 @@ public class CartRepositoryHibernate implements CartRepository {
     @Transactional
     @Override
     public void addToCart(CartInfo cartInfo) {
-        curSession().save(cartInfo);
+        String count="count";
+        SQLQuery query=curSession().createSQLQuery("INSERT INTO h_cart(user_id, good_id,"+count+", total) " +
+                "VALUES (:user_id,:good_id,:countc,:total)");
+        Query query1=query.setLong("user_id",cartInfo.getUser().getId()).setLong("good_id",cartInfo.getGoods().getId())
+                .setInteger("countc",cartInfo.getCount()).setBigDecimal("total",cartInfo.getTotal());
+        query.executeUpdate();
     }
 
     /**

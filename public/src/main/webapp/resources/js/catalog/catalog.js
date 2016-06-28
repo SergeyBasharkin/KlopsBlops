@@ -37,6 +37,9 @@ $(document).ready(function () {
             $this.hide();
         })
     });
+    $(document).on('click','.checkout-button',function () {
+        $('.checkout-button').fadeIn(200);
+    });
     //$('body').on('click','.sort',function(){
     //    var $this=$(this);
     //    var sort=$this.data('sort');

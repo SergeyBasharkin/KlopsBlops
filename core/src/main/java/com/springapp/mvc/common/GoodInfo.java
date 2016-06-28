@@ -145,5 +145,11 @@ public class GoodInfo {
     public GoodInfo() {
     }
 
+    public GoodInfo(String name) {
+        this.name = name;
+    }
 
+    public GoodInfo(BigDecimal price) {
+        this.price = price;
+    }
 }

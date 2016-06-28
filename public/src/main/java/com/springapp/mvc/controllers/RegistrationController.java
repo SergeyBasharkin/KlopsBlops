@@ -18,8 +18,7 @@ import javax.validation.Valid;
 /**
  * Контроллер для регистрации новых пользователей
  *
- * Gataullin Kamil
- * 12.03.2016 22:53
+ *
  */
 @Controller
 @RequestMapping("/reg")

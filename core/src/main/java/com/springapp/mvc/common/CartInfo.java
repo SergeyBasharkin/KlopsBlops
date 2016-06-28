@@ -51,6 +51,13 @@ public class CartInfo {
         this.total=total;
     }
 
+    public CartInfo(UserInfo userInfo, GoodInfo goodInfo, Integer count, BigDecimal total) {
+        this.user=userInfo;
+        this.goods=goodInfo;
+        this.count=count;
+        this.total=total;
+    }
+
     public Long getId() {
         return id;
     }

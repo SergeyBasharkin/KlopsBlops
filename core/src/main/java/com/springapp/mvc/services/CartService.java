@@ -25,7 +25,7 @@ public class CartService {
 
 
     public void addToCart( UserInfo userInfo,GoodInfo goodInfo, Integer count, BigDecimal total,HttpSession session){
-        cartRepository.addToCart(new CartInfo(userInfo,goodInfo,1L,count,total));
+        cartRepository.addToCart(new CartInfo(userInfo,goodInfo,count,total));
         updateCountAndPrice(userInfo,session);
     }
     public List<CartInfo> getUserCarts(UserInfo userInfo){
