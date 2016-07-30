@@ -142,6 +142,25 @@ public class GoodInfo {
         this.price = price;
     }
 
+    public GoodInfo(String name, String description, String type, CategoryInfo category, String imageUrl, BigDecimal price) {
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.price = price;
+    }
+
+    public GoodInfo(Long id,String name, String description, String type, CategoryInfo category, String imageUrl, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.category = category;
+        this.imageUrl = imageUrl;
+        this.price = price;
+    }
+
     public GoodInfo() {
     }
 

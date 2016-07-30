@@ -1,10 +1,12 @@
 package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.aspects.annotation.IncludeCategoryInfo;
+import com.springapp.mvc.common.CategoryInfo;
 import com.springapp.mvc.common.OrderInfo;
 import com.springapp.mvc.common.UserInfo;
 import com.springapp.mvc.form.OrderFormBean;
 import com.springapp.mvc.form.RegistrationFormBean;
+import com.springapp.mvc.services.CategoryService;
 import com.springapp.mvc.services.OrderService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +27,11 @@ import javax.validation.Valid;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
     @Autowired
     private HttpServletRequest request;
+
+
     @IncludeCategoryInfo
     @RequestMapping(method = RequestMethod.POST)
     public String registrationForm(

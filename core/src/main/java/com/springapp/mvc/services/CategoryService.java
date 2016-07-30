@@ -21,6 +21,9 @@ public class CategoryService {
         return categoryRepositoryHibernate.getAllCat();
     }
 
+    public CategoryInfo getCategoryInfoById(Long id){
+        return categoryRepositoryHibernate.getCategoryById(id);
+    }
     public List<CategoryInfo> getParentCat(){
         return categoryRepositoryHibernate.getParentCat();
     }
