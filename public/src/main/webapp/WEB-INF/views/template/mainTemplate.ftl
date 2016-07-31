@@ -5,7 +5,6 @@
 
     <meta charset="UTF-8">
     <title>${title}</title>
-    <link rel="shortcut icon" href="/resources/images/ico/favicon.ico"/>
     <#list styles as css>
         <link rel="stylesheet" href="/resources/stylesheets/${css}" type="text/css"/>
     </#list>
