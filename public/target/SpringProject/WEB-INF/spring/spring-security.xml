@@ -24,7 +24,7 @@
         <!-- Задаем шаблоны url адресов доступ к которым ограничен, указываем необходимые права доступа -->
         <intercept-url pattern="/cabinet**" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/admin**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
 
 
         <!-- "Запомнить меня" позволяет при повторном заходе не проходить авторизацию.

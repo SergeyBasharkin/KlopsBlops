@@ -4,7 +4,7 @@
 <#macro m_body>
 <div class="row large-centered small-9 columns " style="background-color: white" >
     <div class="container">
-        <@form.form commandName="goodForm" action="/admin/create_good" acceptCharset="UTF-8" method="post">
+        <@form.form commandName="goodForm" action="/admin/create_good" acceptCharset="UTF-8" method="post" enctype="multipart/form-data">
             <div class="register-top-grid">
                 <h2 align="center">GOOD INFORMATION</h2>
                 <div>
@@ -24,8 +24,8 @@
                 </div>
                 <div>
                     <span>Image<label>*</label></span>
-                    <@form.input path="image" />
-                    <@form.errors path="image" cssStyle="color: red;" />
+                    <input type="file" name="file">
+                    <@form.errors path="file" cssStyle="color: red;" />
                 </div>
                 <div>
                     <span>Category<label>*</label></span>
@@ -34,7 +34,7 @@
                         <@form.option value="7"/>
                         <@form.option value="3"/>
                     </@form.select>
-                    <@form.errors path="image" cssStyle="color: red;" />
+                    <@form.errors path="category" cssStyle="color: red;" />
                 </div>
                 <div>
                     <span>Type<label>*</label></span>

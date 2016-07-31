@@ -1,6 +1,7 @@
 package com.springapp.mvc.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by sergey on 27.07.16.
@@ -12,8 +13,10 @@ public class GoodFormBean {
     private String description;
     @NotEmpty(message = "Поле обязательно для заполнения")
     private String price;
-    @NotEmpty(message = "Поле обязательно для заполнения")
-    private String Image;
+    private MultipartFile file;
+
+
+
     @NotEmpty(message = "Поле обязательно для заполнения")
     private String category;
 
@@ -42,14 +45,13 @@ public class GoodFormBean {
         this.category = category;
     }
 
-    public String getImage() {
-        return Image;
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public void setImage(String image) {
-        Image = image;
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
-
     public String getPrice() {
         return price;
     }
